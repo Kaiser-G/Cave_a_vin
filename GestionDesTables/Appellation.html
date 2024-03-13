@@ -43,14 +43,14 @@
   <br>
   <br>
   <br>
-  <h1 class="text-center">Liste des pays</h1>
+  <h1 class="text-center">Liste des appellations</h1>
   <br>
   <div class="container-fluid">
     <div id="message"></div>
     <br>
 
     <button id="btnAjout" class="bi bi-plus-square btn btn-primary" data-bs-toggle="modal" data-bs-target="#frmAjout">
-      Ajouter un pays</button>
+      Ajouter une appellation</button>
     <br>
     <br>
 
@@ -71,13 +71,13 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ajouter un nouveau pays</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Ajouter une appellation</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <div class="form-floating mt-3 mb-3">
           <input type="text" class="form-control" id="txtNomAjout" placeholder="Enter nom" name="nomAjout">
-          <label for="pwd">Nom du pays</label>
+          <label for="pwd">Nom de l'appellation</label>
         </div>
         <div class="modal-footer">
           <button id="btnAjoutEnreg" type="button" class="btn btn-success" data-bs-dismiss="modal">Enregistrer</button>
@@ -168,7 +168,7 @@
   <!-- <script src="http://code.jquery.com/jquery.js"></script> -->
   <script src="./Js/js_html.js"></script>
   <script src="./Js/80table_ES6.js"></script>
-  <script src="./Js/init_pays.js"></script>
+  <script src="./Js/init_appellation.js"></script>
   <script src="./Js/ajax_Js_ES6.js"></script>
   <!-------------------------------------
       		CDN JS pour BOOTSTRAP  
@@ -245,8 +245,8 @@
 
 
       //data = les données
-      tab.data = myObj.PAYS.records;
-      tab.header = ["Code Pays", "Nom du pays"];
+      tab.data = myObj.APPELLATION.records;
+      tab.header = ["Code", "Appellation"];
       tab.class_modif = "";//class sans Bootstrap
       tab.class_suppr = "";
       tab.class_vue = "";
@@ -257,9 +257,9 @@
       tab.icone_suppr = "fas fa-trash fa-sm";
 
       //Les méthodes
-      tab.fonction_modif = modifPays;
-      tab.fonction_suppr = supprPays;
-      tab.fonction_vue = vuePays;
+      tab.fonction_modif = modifApp;
+      tab.fonction_suppr = supprApp;
+      tab.fonction_vue = vueAPP;
 
       //Les class BS
       tab.BS_class_vue = "btn btn-success";//Class Bootstrap
@@ -281,7 +281,7 @@
     }
 
     function afficher_Liste() {
-      // Liste des pays
+      // Liste des appellations
       get(url, GetAjax, erreur);
     }
 
@@ -310,17 +310,17 @@
 
     //Pour les modal
 
-    //Function Ajout nouveau pays
+    //Function Ajout nouvelles appellation
     //Sur le bouton enregistrer de la fenetre modal Nouveau avec id="btnAjoutEnreg"
-    function RetourPays_ajout() {
-      message("success", "Nouveau pays ajouté");
+    function RetourAPP_ajout() {
+      message("success", "Nouvelle appellation ajoutée");
       afficher_Liste();
     }
 
     function Get_zones_ajout() {
       // Au format JSON
       let obj = {};
-      obj.NOMPAYS = document.getElementById("txtNomAjout").value;
+      obj.NOMAPPELLATION = document.getElementById("txtNomAjout").value;
       // obj.prenom = document.getElementById("txtPrenomAjout").value;
       // obj.email = document.getElementById("txtMailAjout").value;
       return JSON.stringify(obj);
@@ -333,7 +333,7 @@
 
     /////////////////////////////////////////////////////////////////////////////////
     //function_modif pour le tableau pas touch
-    function modifPays(e) {
+    function modifApp(e) {
       //alert("Click sur modif voiture");
       let valeurs = e.target.value.split(",");
       document.getElementById("txtIdModif").value = valeurs[0];
@@ -347,7 +347,7 @@
     //id = btnModifEnreg
     function RetourAjax_modif(e) {
       //alert("Voiture bien modifiée avec le code : entrée fonction RetourAjax");
-      message("primary", "Modification pays enregistrée");
+      message("primary", "Modification appellation enregistrée");
       afficher_Liste();
     }
 
@@ -355,7 +355,7 @@
       // Au format JSON
       let obj = {};
       obj.id = document.getElementById("txtIdModif").value;
-      obj.NOMPAYS = document.getElementById("txtNomModif").value;
+      obj.NOMAPPELLATION = document.getElementById("txtNomModif").value;
       // obj.nom = document.getElementById("txtPrenomModif").value;
       // obj.email = document.getElementById("txtMailModif").value;
       return JSON.stringify(obj);
@@ -368,12 +368,10 @@
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //function_vue
-    function vuePays(e) {
+    function vueAPP(e) {
       let valeurs = e.target.value.split(",");
       document.getElementById("txtIdVue").value = valeurs[0];
       document.getElementById("txtNomVue").value = valeurs[1];
-      // document.getElementById("txtPrenomVue").value = valeurs[2];
-      // document.getElementById("txtMailVue").value = valeurs[3];
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -389,8 +387,8 @@
       alert("Erreur de la suppression");
     }
 
-    function supprPays(e) {
-      // alert("Click sur supp pays");
+    function supprApp(e) {
+      // alert("Click sur supp");
       let valeurs = e.target.value.split(",");
       document.getElementById("txtIdSuppr").value = valeurs[0];
     }
@@ -414,7 +412,7 @@
       let btnajout = document.getElementById("btnAjoutEnreg");
       btnajout.addEventListener("click", () => {
         let params = Get_zones_ajout();
-        post(url, params, RetourPays_ajout, Erreur_Ajax_ajout);
+        post(url, params, RetourAPP_ajout, Erreur_Ajax_ajout);
       }, false);
 
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////
