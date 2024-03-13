@@ -5,7 +5,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image" href="../images/lézard.png" type="image/x-icon">
-  <title>Gestion des appellations</title>
+  <title>Gestion des couleurs</title>
   <!-- CDN CSS de BOOTSTRAP  -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -43,14 +43,14 @@
   <br>
   <br>
   <br>
-  <h1 class="text-center">Liste des appellations</h1>
+  <h1 class="text-center">Liste des couleurs</h1>
   <br>
   <div class="container-fluid">
     <div id="message"></div>
     <br>
 
     <button id="btnAjout" class="bi bi-plus-square btn btn-primary" data-bs-toggle="modal" data-bs-target="#frmAjout">
-      Ajouter une appellation</button>
+      Ajouter</button>
     <br>
     <br>
 
@@ -71,13 +71,13 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ajouter une appellation</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Ajouter un type de vin (couleur)</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
         <div class="form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtNomAjout" placeholder="Enter nom" name="nomAjout">
-          <label for="pwd">Nom de l'appellation</label>
+          <input type="text" class="form-control" id="txtTypeAjout" placeholder="Enter type" name="typeAjout">
+          <label for="pwd">Type de vin</label>
         </div>
         <div class="modal-footer">
           <button id="btnAjoutEnreg" type="button" class="btn btn-success" data-bs-dismiss="modal">Enregistrer</button>
@@ -102,8 +102,8 @@
           <label for="email">Id</label>
         </div>
         <div class="form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtNomVue" placeholder="Enter nom" name="nomVue" readonly>
-          <label for="pwd">Nom</label>
+          <input type="text" class="form-control" id="txtTypeVue" placeholder="Enter type" name="typeVue" readonly>
+          <label for="pwd">Type de vin</label>
         </div>
 
         <div class="modal-footer">
@@ -128,8 +128,8 @@
           <label for="">Id</label>
         </div>
         <div class="form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtNomModif" placeholder="Enter nom" name="nomModif">
-          <label for="pwd">Nom</label>
+          <input type="text" class="form-control" id="txtTypeModif" placeholder="Enter type" name="typeModif">
+          <label for="pwd">Type de vin</label>
         </div>
 
         <div class="modal-footer">
@@ -168,7 +168,7 @@
   <!-- <script src="http://code.jquery.com/jquery.js"></script> -->
   <script src="./Js/js_html.js"></script>
   <script src="./Js/80table_ES6.js"></script>
-  <script src="./Js/init_appellation.js"></script>
+  <script src="./Js/init_couleur.js"></script>
   <script src="./Js/ajax_Js_ES6.js"></script>
   <!-------------------------------------
       		CDN JS pour BOOTSTRAP  
@@ -245,8 +245,8 @@
 
 
       //data = les données
-      tab.data = myObj.APPELLATION.records;
-      tab.header = ["Code", "Appellation"];
+      tab.data = myObj.COULEUR.records;
+      tab.header = ["Code", "Type de vin"];
       tab.class_modif = "";//class sans Bootstrap
       tab.class_suppr = "";
       tab.class_vue = "";
@@ -257,9 +257,9 @@
       tab.icone_suppr = "fas fa-trash fa-sm";
 
       //Les méthodes
-      tab.fonction_modif = modifApp;
-      tab.fonction_suppr = supprApp;
-      tab.fonction_vue = vueAPP;
+      tab.fonction_modif = modifType;
+      tab.fonction_suppr = supprType;
+      tab.fonction_vue = vueType;
 
       //Les class BS
       tab.BS_class_vue = "btn btn-success";//Class Bootstrap
@@ -281,7 +281,7 @@
     }
 
     function afficher_Liste() {
-      // Liste des appellations
+      // Liste des type de vins
       get(url, GetAjax, erreur);
     }
 
@@ -312,15 +312,15 @@
 
     //Function Ajout nouvelles appellation
     //Sur le bouton enregistrer de la fenetre modal Nouveau avec id="btnAjoutEnreg"
-    function RetourAPP_ajout() {
-      message("success", "Nouvelle appellation ajoutée");
+    function RetourType_ajout() {
+      message("success", "Nouveau type de vin ajoutée");
       afficher_Liste();
     }
 
     function Get_zones_ajout() {
       // Au format JSON
       let obj = {};
-      obj.NOMAPPELLATION = document.getElementById("txtNomAjout").value;
+      obj.NOMCOULEUR = document.getElementById("txtTypeAjout").value;
       return JSON.stringify(obj);
     }
 
@@ -331,19 +331,19 @@
 
     /////////////////////////////////////////////////////////////////////////////////
     //function_modif pour le tableau pas touch
-    function modifApp(e) {
+    function modifType(e) {
       //alert("Click sur modif");
       let valeurs = e.target.value.split(",");
       document.getElementById("txtIdModif").value = valeurs[0];
-      document.getElementById("txtNomModif").value = valeurs[1];
+      document.getElementById("txtTypeModif").value = valeurs[1];
     }
 
 
     //bouton enregistrer dans la fenetre modal
     //id = btnModifEnreg
     function RetourAjax_modif(e) {
-      //alert("Voiture bien modifiée avec le code : entrée fonction RetourAjax");
-      message("primary", "Modification appellation enregistrée");
+      //alert("bien modifiée avec le code : entrée fonction RetourAjax");
+      message("primary", "Modification type enregistrée");
       afficher_Liste();
     }
 
@@ -351,7 +351,7 @@
       // Au format JSON
       let obj = {};
       obj.id = document.getElementById("txtIdModif").value;
-      obj.NOMAPPELLATION = document.getElementById("txtNomModif").value;
+      obj.NOMCOULEUR = document.getElementById("txtTypeModif").value;
       return JSON.stringify(obj);
       console.log(obj);
     }
@@ -362,12 +362,11 @@
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //function_vue
-    function vueAPP(e) {
+    function vueType(e) {
       let valeurs = e.target.value.split(",");
       document.getElementById("txtIdVue").value = valeurs[0];
-      document.getElementById("txtNomVue").value = valeurs[1];
+      document.getElementById("txtTypeVue").value = valeurs[1];
     }
-
     //////////////////////////////////////////////////////////////////////////////////////////////////
     //fonction_suppr
 
@@ -381,7 +380,7 @@
       alert("Erreur de la suppression");
     }
 
-    function supprApp(e) {
+    function supprType(e) {
       // alert("Click sur supp");
       let valeurs = e.target.value.split(",");
       document.getElementById("txtIdSuppr").value = valeurs[0];
@@ -406,7 +405,7 @@
       let btnajout = document.getElementById("btnAjoutEnreg");
       btnajout.addEventListener("click", () => {
         let params = Get_zones_ajout();
-        post(url, params, RetourAPP_ajout, Erreur_Ajax_ajout);
+        post(url, params, RetourType_ajout, Erreur_Ajax_ajout);
       }, false);
 
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////
