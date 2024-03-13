@@ -220,7 +220,7 @@
       //création de new class
       let tab = new Table();
       tab.id_zone = "zone";
-      tab.class_table = "table table-dark table_hover";
+      tab.class_table = "table table-dark table_hover text-center";//text-center permet de centrer les éléments du tableau
 
       //pour les fenetres Modal Bootstrap (objet JSON) rajoute data-bs-toggle modal etc...
       tab.BS_toggle_modal = {
@@ -241,7 +241,7 @@
       };
 
 
-      //data = les données
+      //data = les données a modifier pour chaque API
       tab.data = myObj.CEPAGE.records;
       tab.header = ["Code", "Cépage"];
       tab.class_modif = "";//class sans Bootstrap
@@ -316,6 +316,7 @@
 
     function Get_zones_ajout() {
       // Au format JSON
+      //Modifier obj.NOMCEPAGE avec les titres de columns des API
       let obj = {};
       obj.NOMCEPAGE = document.getElementById("txtTypeAjout").value;
       return JSON.stringify(obj);
@@ -346,6 +347,7 @@
 
     function Get_zones_modif(e) {
       // Au format JSON
+      //Modifier obj.NOMCEPAGE avec les titres de columns des API
       let obj = {};
       obj.id = document.getElementById("txtIdModif").value;
       obj.NOMCEPAGE = document.getElementById("txtTypeModif").value;
