@@ -76,8 +76,8 @@
         </div>
 
         <div class="form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtNomAjout" placeholder="Enter nom" name="nomAjout" required>
-          <label for="pwd" required>Nom du pays</label>
+          <input type="text" class="form-control" id="txtNomAjout" placeholder="Enter nom" name="nomAjout">
+          <label for="pwd">Nom du pays</label>
         </div>
         <div class="modal-footer">
           <button id="btnAjoutEnreg" type="button" class="btn btn-success" data-bs-dismiss="modal">Enregistrer</button>
@@ -125,7 +125,7 @@
 
         <div class="form-floating mb-3 mt-3">
           <input type="text" class="form-control" id="txtIdModif" placeholder="Enter id" name="idModif" readonly>
-          <label for="email">Id</label>
+          <label for="">Id</label>
         </div>
         <div class="form-floating mt-3 mb-3">
           <input type="text" class="form-control" id="txtNomModif" placeholder="Enter nom" name="nomModif">
@@ -173,6 +173,11 @@
   <!-------------------------------------
       		CDN JS pour BOOTSTRAP  
       	--------------------------------------->
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
   <!-- Popper JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
@@ -180,13 +185,11 @@
       		Nos fichiers JS  
       	--------------------------------------->
   <script>
-
-
     //barre de recherche
 
     ////////////////////////////////
     //    La fonction pour activer la recherche sur la TABLE
-    ////////////////////////////////NE FONCTIONNE PAS
+    ////////////////////////////////////
     function search(saisie, table) {
 
       let zoneRecherche = document.getElementById(saisie);
@@ -278,7 +281,7 @@
     }
 
     function afficher_Liste() {
-      // Liste des clients
+      // Liste des pays
       get(url, GetAjax, erreur);
     }
 
@@ -307,7 +310,7 @@
 
     //Pour les modal
 
-    //Function Ajout nouvelle voiture
+    //Function Ajout nouveau pays
     //Sur le bouton enregistrer de la fenetre modal Nouveau avec id="btnAjoutEnreg"
     function RetourPays_ajout() {
       message("success", "Nouveau pays ajouté");
@@ -319,7 +322,7 @@
     function Get_zones_ajout() {
       // Au format JSON
       let obj = {};
-      obj.nom = document.getElementById("txtNomAjout").value;
+      obj.NOMPAYS = document.getElementById("txtNomAjout").value;
       // obj.prenom = document.getElementById("txtPrenomAjout").value;
       // obj.email = document.getElementById("txtMailAjout").value;
       return JSON.stringify(obj);
@@ -354,10 +357,11 @@
       // Au format JSON
       let obj = {};
       obj.id = document.getElementById("txtIdModif").value;
-      obj.nom = document.getElementById("txtNomModif").value;
+      obj.NOMPAYS = document.getElementById("txtNomModif").value;
       // obj.nom = document.getElementById("txtPrenomModif").value;
       // obj.email = document.getElementById("txtMailModif").value;
       return JSON.stringify(obj);
+      console.log(obj);
     }
 
     function Erreur_Ajax_modif(e) {
@@ -388,7 +392,7 @@
     }
 
     function supprPays(e) {
-      // alert("Click sur supp voiture");
+      // alert("Click sur supp pays");
       let valeurs = e.target.value.split(",");
       document.getElementById("txtIdSuppr").value = valeurs[0];
     }
