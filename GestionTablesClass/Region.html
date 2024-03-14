@@ -130,20 +130,16 @@
         </div>
 
         <div class="form-floating mb-3 mt-3">
-          <input type="text" class="form-control" id="txtIdModif" placeholder="Enter id" name="idModif" readonly>
-          <label for="email">Id</label>
+          <input type="text" class="form-control" id="txtCodeModif" placeholder="Enter code" name="codeModif" readonly>
+          <label for="email">Code</label>
         </div>
         <div class="form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtNomModif" placeholder="Enter nom" name="nomModif">
-          <label for="pwd">Nom</label>
+          <input type="text" class="form-control" id="txtRegionModif" placeholder="Enter region" name="regionModif">
+          <label for="pwd">Nom de la région</label>
         </div>
         <div class="form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtPrenomModif" placeholder="Enter prenom" name="prenomModif">
-          <label for="pwd">Prénom</label>
-        </div>
-        <div class="form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtMailModif" placeholder="Enter mail" name="mailModif">
-          <label for="pwd">Mail</label>
+          <input type="text" class="form-control" id="txtPaysModif" placeholder="Enter pays" name="paysModif">
+          <label for="pwd">Pays</label>
         </div>
 
         <div class="modal-footer">
@@ -307,21 +303,21 @@
 
     //Pour les modal
 
-    //Function Ajout nouvelle voiture
+    //Function Ajout nouvelle région
     //Sur le bouton enregistrer de la fenetre modal Nouveau avec id="btnAjoutEnreg"
     function RetourClient_ajout() {
       //alert("Nouvelle voiture ajoutée");
       afficher_Liste();
-      message("success", "Nouveau client ajoutée");
+      message("success", "Nouvelle région ajoutée");
     }
 
     function Get_zones_ajout() {
       // Au format JSON
       //a modif a chaque API
       let obj = {};
-      obj.nom = document.getElementById("txtNomAjout").value;
-      obj.prenom = document.getElementById("txtPrenomAjout").value;
-      obj.email = document.getElementById("txtMailAjout").value;
+      obj.NOMREGION = document.getElementById("txtRegionAjout").value;
+      obj.NOMPAYS = document.getElementById("txtPaysAjout").value;
+      // obj.email = document.getElementById("txtMailAjout").value;
       return JSON.stringify(obj);
     }
 
@@ -335,10 +331,10 @@
     function modifClient(e) {
       //alert("Click sur modif voiture");
       let valeurs = e.target.value.split(",");
-      document.getElementById("txtIdModif").value = valeurs[0];
-      document.getElementById("txtNomModif").value = valeurs[1];
-      document.getElementById("txtPrenomModif").value = valeurs[2];
-      document.getElementById("txtMailModif").value = valeurs[3];
+      document.getElementById("txtCodeModif").value = valeurs[0];
+      document.getElementById("txtRegionModif").value = valeurs[1];
+      document.getElementById("txtPaysModif").value = valeurs[2];
+
     }
 
 
@@ -347,16 +343,16 @@
     function RetourAjax_modif(e) {
       //alert("bien modifiée avec le code : entrée fonction RetourAjax" + e);
       afficher_Liste();
-      message("primary", "Client modifiée");
+      message("primary", "Région modifiée");
     }
 
     function Get_zones_modif(e) {
       // Au format JSON
       let obj = {};
-      obj.id = document.getElementById("txtIdModif").value;
-      obj.nom = document.getElementById("txtNomModif").value;
-      obj.prenom = document.getElementById("txtPrenomModif").value;
-      obj.email = document.getElementById("txtMailModif").value;
+      obj.id = document.getElementById("txtCodeModif").value;
+      obj.nom = document.getElementById("txtRegionModif").value;
+      obj.prenom = document.getElementById("txtPaysModif").value;
+
       return JSON.stringify(obj);
     }
 
@@ -398,7 +394,7 @@
         message("danger", "Ligne supprimée");
 
       } else {
-        document.getElementById("message").innerHTML = " client non supprimée"
+        document.getElementById("message").innerHTML = " ligne non supprimée"
 
       }
     }
@@ -434,7 +430,7 @@
       let btnEnreg = document.getElementById("btnModifEnreg");
       btnEnreg.addEventListener("click", (e) => {
         //alert("Modif enregistré");
-        let code = document.getElementById("txtIdModif").value;
+        let code = document.getElementById("txtCodeModif").value;
         let params = Get_zones_modif();
         Obj_AJAX.Cle = code;
         Obj_AJAX.put(params, RetourAjax_modif, Erreur_Ajax_modif);
