@@ -46,6 +46,9 @@
   <img id="contact" src="../images/contact.png" class="rounded float-right" alt="">
   <h1 class="text-center">Ajouter une région</h1>
   <br>
+  <!--A EFFACER-->
+  <div id="testCombo" class="text-center"></div>
+  <!--A EFFACER-->
   <div class="container-fluid">
     <div id="message"></div>
     <br>
@@ -54,6 +57,7 @@
     <br>
     <div id="zone"></div>
   </div>
+
 
 
   <footer id="idFooter"></footer>
@@ -73,6 +77,9 @@
         <div class="form-floating mt-3 mb-3">
           <input type="text" class="form-control" id="txtPaysAjout" placeholder="Enter pays" name="paysAjout">
           <label for="pwd">Pays</label>
+          <div id="comboAjout"></div>
+
+
         </div>
         <div class="form-floating mt-3 mb-3">
           <input type="text" class="form-control" id="txtRegionAjout" placeholder="Enter region" name="regionAjout">
@@ -156,6 +163,7 @@
   <script src="./Js class/80table_ES6.js"></script>
   <script src="./Js class/Ajax_class.js"></script>
   <script src="./Js class/init_class.js"></script>
+  <script src="./js class/Combo.js"></script>
   <!-------------------------------------
       		CDN JS pour BOOTSTRAP  
       	--------------------------------------->
@@ -246,6 +254,7 @@
 
 
       //data = les données
+      //myData viens de la boucle au dessus
       tab.data = myData;
       tab.header = ["Code", "Nom de la région", "Pays"];
       tab.class_modif = "";//class sans Bootstrap
@@ -309,6 +318,39 @@
     //Pour les modal
 
     //Function Ajout nouvelle région
+
+    /////////////////////////////A EFFACER//////////////////////////////////////////////////////////////
+    ///TEST////////////////
+
+    //ajout du combo dans la modal
+
+
+    //Gestion de l'évènement CHANGE sur le COMBO
+    function cbRegionChange() {
+      let zone_select = document.getElementById("idRegion");
+      alert("valeur " + zone_select.value);
+      alert("Text " + zone_select.options[zone_select.selectedIndex].text);
+    }
+    function combo(reponse) {
+      let c = new Combo();
+      c.id_zone = "testCombo";
+      c.id_select = "idRegion";
+      c.class_select = "class_Region";
+      c.data = donnees;
+      //fonction_change
+      c.fonction_change = cbRegionChange;
+
+      c.generer();
+    };
+
+
+
+
+
+    ///TEST////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //ajout du combo dans la modal
     //Sur le bouton enregistrer de la fenetre modal Nouveau avec id="btnAjoutEnreg"
     function RetourClient_ajout() {
       //alert("Nouvelle région ajoutée");
@@ -416,6 +458,8 @@
       let footer = new loadHTML("idFooter", "../Header_footer/FOOTER.html");
       header.load();
       footer.load();
+      //Mettre ici la création des COMBO dans les modals//////////
+      combo();
       //peut servir dans les fonctions pour faire mise a jour de la table
       afficher_Liste();
 
