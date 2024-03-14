@@ -166,7 +166,8 @@
   <!-- <script src="http://code.jquery.com/jquery.js"></script> -->
   <script src="./Js/js_html.js"></script>
   <script src="./Js/80table_ES6.js"></script>
-  <script src="./Js/init_cepage.js"></script>
+  <!--Pour l'adresse URL-->
+  <script src="./Js/init.js"></script>
   <script src="./Js/ajax_Js_ES6.js"></script>
   <!-------------------------------------
       		CDN JS pour BOOTSTRAP  
@@ -279,7 +280,8 @@
 
     function afficher_Liste() {
       // Liste des type de vins
-      get(url, GetAjax, erreur);
+      //url + "/api"
+      get(url + "/CEPAGE", GetAjax, erreur);
     }
 
 
