@@ -206,6 +206,13 @@
     //creation du tableau
     function RetourGetAjax(reponse) {
       let myObj = JSON.parse(reponse);
+      //je reformate le resultat pour utilisation dans la class tab
+      let myData = new Array();
+      console.log(myObj.REGION);
+      myObj.REGION.forEach(element => {
+        myData.push([element.CODEREGION, element.NOMREGION, element.PAYS[0].NOMPAYS]);
+      });
+      console.log(myData);
 
 
       // // Efface la zone et ajoute la zone de recherche
@@ -240,7 +247,7 @@
 
 
       //data = les données
-      tab.data = myObj.REGION.records;
+      tab.data = myData;
       tab.header = ["Code", "Nom de la région", "Pays"];
       tab.class_modif = "";//class sans Bootstrap
       tab.class_suppr = "";
@@ -276,7 +283,7 @@
 
     function afficher_Liste() {
       // Liste des regions__dans cle = "changer en fonction de l'api"
-      Obj_AJAX.Cle = "REGION?order=NOMREGION,asc&columns=CODEREGION,NOMREGION";
+      Obj_AJAX.Cle = "REGION?include=PAYS&transform=1";
       // Obj_AJAX.Cle += "&include=PAYS&transform=1";
       Obj_AJAX.get(RetourGetAjax, ErreurAjax);
     }
@@ -306,7 +313,7 @@
     //Function Ajout nouvelle région
     //Sur le bouton enregistrer de la fenetre modal Nouveau avec id="btnAjoutEnreg"
     function RetourClient_ajout() {
-      //alert("Nouvelle voiture ajoutée");
+      //alert("Nouvelle région ajoutée");
       afficher_Liste();
       message("success", "Nouvelle région ajoutée");
     }
