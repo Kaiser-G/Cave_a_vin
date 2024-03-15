@@ -1,3 +1,4 @@
+<!--Copy avant mise en place du combo-->
 <!DOCTYPE html>
 <html lang="">
 
@@ -322,6 +323,7 @@
     /////////////////////////////A EFFACER//////////////////////////////////////////////////////////////
     ///TEST////////////////
 
+    //ajout du combo dans la modal
 
 
     //Gestion de l'évènement CHANGE sur le COMBO
@@ -331,15 +333,8 @@
       alert("Text " + zone_select.options[zone_select.selectedIndex].text);
     }
     function combo(reponse) {
-      let donnees = [
-        [1, "Lyon"],
-        [2, "Marseille"],
-        [3, "Bretagne"],
-        [4, "Lille"],
-        [5, "POLOGNE"]
-      ];
       let c = new Combo();
-      c.id_zone = "comboAjout";
+      c.id_zone = "testCombo";
       c.id_select = "idRegion";
       c.class_select = "class_Region";
       c.data = donnees;
@@ -358,26 +353,26 @@
 
     //ajout du combo dans la modal
     //Sur le bouton enregistrer de la fenetre modal Nouveau avec id="btnAjoutEnreg"
-    // function RetourClient_ajout() {
-    //   //alert("Nouvelle région ajoutée");
-    //   afficher_Liste();
-    //   message("success", "Nouvelle région ajoutée");
-    // }
+    function RetourClient_ajout() {
+      //alert("Nouvelle région ajoutée");
+      afficher_Liste();
+      message("success", "Nouvelle région ajoutée");
+    }
 
-    // function Get_zones_ajout() {
-    // Au format JSON
-    //a modif a chaque API
-    // let obj = {};
-    // obj.NOMREGION = document.getElementById("txtRegionAjout").value;
-    // obj.NOMPAYS = document.getElementById("txtPaysAjout").value;
-    // obj.email = document.getElementById("txtMailAjout").value;
-    //   return JSON.stringify(obj);
-    // }
+    function Get_zones_ajout() {
+      // Au format JSON
+      //a modif a chaque API
+      let obj = {};
+      obj.NOMREGION = document.getElementById("txtRegionAjout").value;
+      obj.NOMPAYS = document.getElementById("txtPaysAjout").value;
+      // obj.email = document.getElementById("txtMailAjout").value;
+      return JSON.stringify(obj);
+    }
 
-    // function Erreur_Ajax_ajout(reponse) {
-    //   alert("Erreur Ajax ");
+    function Erreur_Ajax_ajout(reponse) {
+      alert("Erreur Ajax ");
 
-    // }
+    }
 
     /////////////////////////////////////////////////////////////////////////////////
     //function_modif pour le tableau pas touch
