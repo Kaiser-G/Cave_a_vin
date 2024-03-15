@@ -147,7 +147,7 @@
           <label for="pwd">Nom de la région</label>
         </div>
         <div class="form-floating mt-3 mb-3">
-
+          <input type="text" class="form-control" id="txtPaysAjout" placeholder="Enter pays" name="paysAjout">
           <label for="pwd">Pays</label>
           <div id="comboModif"></div>
         </div>
@@ -322,16 +322,7 @@
 
     //Function Ajout nouvelle région
 
-    //ajout du combo dans la modal
-    //Sur le bouton enregistrer de la fenetre modal Nouveau avec id="btnAjoutEnreg"
-    // function RetourClient_ajout() {
-    //   //alert("Nouvelle région ajoutée");
-    //   afficher_Liste();
-    //   message("success", "Nouvelle région ajoutée");
-    // }
-
     function Get_zones_ajout(reponse) {
-
       // Au format JSON
       //a modif a chaque API
       let obj = {};
@@ -341,18 +332,12 @@
       return JSON.stringify(obj);
     }
     function RetourPays_ajout(reponse) {
-      alert("test");
-
-
       afficher_Liste();
       message("success", "Nouvelle région ajoutée");
-
     }
-
 
     function Erreur_Ajax_ajout(reponse) {
       alert("Erreur Ajax ");
-
     }
 
     function genererComboPays() {
@@ -360,25 +345,23 @@
       Obj_AJAX.get(RetourGetPaysAjax, ErreurAjax);
     }
 
+    //Combo pour la modal AJOUT
     function RetourGetPaysAjax(reponse) {
       let myObj = JSON.parse(reponse);
-      let c = new Combo();
-      c.id_zone = "comboAjout";
-      c.id_select = "idPaysComboAjout";
-      c.class_select = "class_Region";
-      c.data = myObj.PAYS.records;
-      //fonction_change
-      //c.fonction_change = cbRegionChange;
+      let ajout = new Combo();
+      ajout.id_zone = "comboAjout";
+      ajout.id_select = "idPaysComboAjout";
+      ajout.class_select = "class_Region";
+      ajout.data = myObj.PAYS.records;
 
-      c.generer();
-
+      ajout.generer();
+      /////////////////////////////////////////
+      //Combo pour la modal MODIF
       let modif = new Combo();
       modif.id_zone = "comboModif";
       modif.id_select = "idPaysComboModif";
       modif.class_select = "class_PaysComboM";
       modif.data = myObj.PAYS.records;
-      //fonction_change
-      //c.fonction_change = cbRegionChange;
 
       modif.generer();
     }
