@@ -315,9 +315,9 @@
         message +
         "</div>";
     }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-    //Pour les modal
+    //////////////////////////Pour les modal////////////////////
 
     //Function Ajout nouvelle région
 
@@ -329,7 +329,20 @@
     //   message("success", "Nouvelle région ajoutée");
     // }
 
-    function Get_zones_ajout() {
+    function Get_zones_ajout(reponse) {
+      Obj_AJAX.Cle = "PAYS";
+      Obj_AJAX.get(RetourGetAjax, ErreurAjax);
+      let myObj = JSON.parse(reponse);
+      //je reformate le resultat pour utilisation dans la class tab
+      // let donnees = new Array();
+      // myObj.PAYS.forEach(element => {
+      //   donnees.get([element.CODEPAYS, element.NOMPAYS]);
+      // });
+      let c = new Combo();
+      c.id_zone = "comboAjout";
+      c.id_select = "idRegion";
+      c.class_select = "class_Region";
+      c.data = myObj.PAYS.records;
       // Au format JSON
       //a modif a chaque API
       // let obj = {};
@@ -338,23 +351,25 @@
       // obj.email = document.getElementById("txtMailAjout").value;
       // return JSON.stringify(obj);
     }
-    function RetourPays_ajout() {
+    function RetourPays_ajout(reponse) {
       alert("test");
+
       combo();
       afficher_Liste();
       message("success", "Nouvelle région ajoutée");
 
     }
     function combo(reponse) {
-      //let myObj = JSON.parse(reponse);
-      let donnees = [[1, "Lyon"],
-      [2, "Marseille"],
-      [3, "Bretagne"]];
+      // let donnees = [[1, "Lyon"],
+      // [2, "Marseille"],
+      // [3, "Bretagne"]];
+      // let donnees = ;
+
       let c = new Combo();
       c.id_zone = "comboAjout";
       c.id_select = "idRegion";
       c.class_select = "class_Region";
-      c.data = donnees;
+      //c.data = myObj.PAYS.records;
       //fonction_change
       //c.fonction_change = cbRegionChange;
 
@@ -368,7 +383,7 @@
 
     }
 
-    /////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
     //function_modif pour le tableau pas touch
     function modifClient(e) {
       //alert("Click sur modif voiture");
