@@ -342,7 +342,7 @@
     //bouton enregistrer dans la fenetre modal
     //id = btnModifEnreg
     function RetourAjax_modif(e) {
-      //alert("Voiture bien modifiée avec le code : entrée fonction RetourAjax");
+      //alert("bien modifiée avec le code : entrée fonction RetourAjax");
       message("primary", "Modification appellation enregistrée");
       afficher_Liste();
     }
@@ -350,7 +350,7 @@
     function Get_zones_modif(e) {
       // Au format JSON
       let obj = {};
-      obj.id = document.getElementById("txtIdModif").value;
+      obj.CODEAPPELLATION = document.getElementById("txtIdModif").value;
       obj.NOMAPPELLATION = document.getElementById("txtNomModif").value;
       return JSON.stringify(obj);
       console.log(obj);
@@ -406,7 +406,7 @@
       let btnajout = document.getElementById("btnAjoutEnreg");
       btnajout.addEventListener("click", () => {
         let params = Get_zones_ajout();
-        post(url, params, RetourAPP_ajout, Erreur_Ajax_ajout);
+        post(url + "/APPELLATION", params, RetourAPP_ajout, Erreur_Ajax_ajout);
       }, false);
 
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -416,7 +416,7 @@
       btnEnreg.addEventListener("click", (e) => {
         let code = document.getElementById("txtIdModif").value;
         let params = Get_zones_modif();
-        put(url + "/" + code, params, RetourAjax_modif, Erreur_Ajax_modif);
+        put(url + "/APPELLATION" + "/" + code, params, RetourAjax_modif, Erreur_Ajax_modif);
       }, false);
       /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       //supprimer
@@ -425,7 +425,7 @@
       btnSupp.addEventListener("click", (e) => {
         let valeurs = e.target.value.split(",");
         let code = document.getElementById("txtIdSuppr").value;
-        del(url + "/" + code, RetourAjax_suppr, Erreur_Ajax_suppr);
+        del(url + "/APPELLATION" + "/" + code, RetourAjax_suppr, Erreur_Ajax_suppr);
       }, false);
     }, false);
 

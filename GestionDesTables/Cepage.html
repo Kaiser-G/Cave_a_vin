@@ -406,7 +406,7 @@
       let btnajout = document.getElementById("btnAjoutEnreg");
       btnajout.addEventListener("click", () => {
         let params = Get_zones_ajout();
-        post(url, params, RetourType_ajout, Erreur_Ajax_ajout);
+        post(url + "/CEPAGE", params, RetourType_ajout, Erreur_Ajax_ajout);
       }, false);
 
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -416,7 +416,7 @@
       btnEnreg.addEventListener("click", (e) => {
         let code = document.getElementById("txtIdModif").value;
         let params = Get_zones_modif();
-        put(url + "/" + code, params, RetourAjax_modif, Erreur_Ajax_modif);
+        put(url + "/CEPAGE" + "/" + code, params, RetourAjax_modif, Erreur_Ajax_modif);
       }, false);
       /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       //supprimer
@@ -425,7 +425,7 @@
       btnSupp.addEventListener("click", (e) => {
         let valeurs = e.target.value.split(",");
         let code = document.getElementById("txtIdSuppr").value;
-        del(url + "/" + code, RetourAjax_suppr, Erreur_Ajax_suppr);
+        del(url + "/CEPAGE" + "/" + code, RetourAjax_suppr, Erreur_Ajax_suppr);
       }, false);
     }, false);
 
