@@ -64,6 +64,7 @@
   <!-----------------Pour les fenetres modal------------------------------>
 
 
+
   <!--Fenetre modal Ajout-->
 
   <div class="modal fade" id="frmAjout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -74,9 +75,10 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <div class="form-floating mt-3 mb-3">
+        <div class="form-group form-floating mt-3 mb-3">
           <input type="text" class="form-control" id="txtPaysAjout" placeholder="Enter pays" name="paysAjout">
-          <label for="pwd">Pays</label>
+
+          <label for="pays">Pays</label>
           <div id="comboAjout"></div>
 
 
@@ -319,43 +321,6 @@
 
     //Function Ajout nouvelle région
 
-    /////////////////////////////A EFFACER//////////////////////////////////////////////////////////////
-    ///TEST////////////////
-
-
-
-    //Gestion de l'évènement CHANGE sur le COMBO
-    function cbRegionChange() {
-      let zone_select = document.getElementById("idRegion");
-      alert("valeur " + zone_select.value);
-      alert("Text " + zone_select.options[zone_select.selectedIndex].text);
-    }
-    function combo(reponse) {
-      let donnees = [
-        [1, "Lyon"],
-        [2, "Marseille"],
-        [3, "Bretagne"],
-        [4, "Lille"],
-        [5, "POLOGNE"]
-      ];
-      let c = new Combo();
-      c.id_zone = "comboAjout";
-      c.id_select = "idRegion";
-      c.class_select = "class_Region";
-      c.data = donnees;
-      //fonction_change
-      c.fonction_change = cbRegionChange;
-
-      c.generer();
-    };
-
-
-
-
-
-    ///TEST////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     //ajout du combo dans la modal
     //Sur le bouton enregistrer de la fenetre modal Nouveau avec id="btnAjoutEnreg"
     // function RetourClient_ajout() {
@@ -364,20 +329,44 @@
     //   message("success", "Nouvelle région ajoutée");
     // }
 
-    // function Get_zones_ajout() {
-    // Au format JSON
-    //a modif a chaque API
-    // let obj = {};
-    // obj.NOMREGION = document.getElementById("txtRegionAjout").value;
-    // obj.NOMPAYS = document.getElementById("txtPaysAjout").value;
-    // obj.email = document.getElementById("txtMailAjout").value;
-    //   return JSON.stringify(obj);
-    // }
+    function Get_zones_ajout() {
+      // Au format JSON
+      //a modif a chaque API
+      // let obj = {};
+      // obj.NOMREGION = document.getElementById("txtRegionAjout").value;
+      // obj.NOMPAYS = document.getElementById("txtPaysAjout").value;
+      // obj.email = document.getElementById("txtMailAjout").value;
+      // return JSON.stringify(obj);
+    }
+    function RetourPays_ajout() {
+      alert("test");
+      combo();
+      afficher_Liste();
+      message("success", "Nouvelle région ajoutée");
 
-    // function Erreur_Ajax_ajout(reponse) {
-    //   alert("Erreur Ajax ");
+    }
+    function combo(reponse) {
+      //let myObj = JSON.parse(reponse);
+      let donnees = [[1, "Lyon"],
+      [2, "Marseille"],
+      [3, "Bretagne"]];
+      let c = new Combo();
+      c.id_zone = "comboAjout";
+      c.id_select = "idRegion";
+      c.class_select = "class_Region";
+      c.data = donnees;
+      //fonction_change
+      //c.fonction_change = cbRegionChange;
 
-    // }
+      c.generer();
+
+
+    };
+
+    function Erreur_Ajax_ajout(reponse) {
+      alert("Erreur Ajax ");
+
+    }
 
     /////////////////////////////////////////////////////////////////////////////////
     //function_modif pour le tableau pas touch
@@ -476,7 +465,7 @@
       btnajout.addEventListener("click", () => {
         let params = Get_zones_ajout();
         let Ajax = new Ajax_Es6(url);
-        Ajax.post(params, RetourClient_ajout, Erreur_Ajax_ajout);
+        Ajax.post(params, RetourPays_ajout, Erreur_Ajax_ajout);
       }, false);
 
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////
