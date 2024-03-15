@@ -147,8 +147,9 @@
           <label for="pwd">Nom de la région</label>
         </div>
         <div class="form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtPaysModif" placeholder="Enter pays" name="paysModif">
+
           <label for="pwd">Pays</label>
+          <div id="comboModif"></div>
         </div>
 
         <div class="modal-footer">
@@ -293,7 +294,7 @@
 
     function afficher_Liste() {
       // Liste des regions__dans cle = "changer en fonction de l'api"
-      Obj_AJAX.Cle = "REGION?include=PAYS&transform=1";
+      Obj_AJAX.Url = url + "REGION?include=PAYS&transform=1";
       Obj_AJAX.get(RetourGetAjax, ErreurAjax);
     }
 
@@ -330,58 +331,58 @@
     // }
 
     function Get_zones_ajout(reponse) {
-      Obj_AJAX.Cle = "PAYS";
-      Obj_AJAX.get(RetourGetAjax, ErreurAjax);
-      let myObj = JSON.parse(reponse);
-      //je reformate le resultat pour utilisation dans la class tab
-      // let donnees = new Array();
-      // myObj.PAYS.forEach(element => {
-      //   donnees.get([element.CODEPAYS, element.NOMPAYS]);
-      // });
-      let c = new Combo();
-      c.id_zone = "comboAjout";
-      c.id_select = "idRegion";
-      c.class_select = "class_Region";
-      c.data = myObj.PAYS.records;
+
       // Au format JSON
       //a modif a chaque API
-      // let obj = {};
-      // obj.NOMREGION = document.getElementById("txtRegionAjout").value;
-      // obj.NOMPAYS = document.getElementById("txtPaysAjout").value;
-      // obj.email = document.getElementById("txtMailAjout").value;
-      // return JSON.stringify(obj);
+      let obj = {};
+      obj.NOMREGION = document.getElementById("txtRegionAjout").value;
+      obj.CODEPAYS = document.getElementById("idPaysComboAjout").value;
+
+      return JSON.stringify(obj);
     }
     function RetourPays_ajout(reponse) {
       alert("test");
 
-      combo();
+
       afficher_Liste();
       message("success", "Nouvelle région ajoutée");
 
     }
-    function combo(reponse) {
-      // let donnees = [[1, "Lyon"],
-      // [2, "Marseille"],
-      // [3, "Bretagne"]];
-      // let donnees = ;
 
-      let c = new Combo();
-      c.id_zone = "comboAjout";
-      c.id_select = "idRegion";
-      c.class_select = "class_Region";
-      //c.data = myObj.PAYS.records;
-      //fonction_change
-      //c.fonction_change = cbRegionChange;
-
-      c.generer();
-
-
-    };
 
     function Erreur_Ajax_ajout(reponse) {
       alert("Erreur Ajax ");
 
     }
+
+    function genererComboPays() {
+      Obj_AJAX.Url = url + "PAYS?order=NOMPAYS,asc";
+      Obj_AJAX.get(RetourGetPaysAjax, ErreurAjax);
+    }
+
+    function RetourGetPaysAjax(reponse) {
+      let myObj = JSON.parse(reponse);
+      let c = new Combo();
+      c.id_zone = "comboAjout";
+      c.id_select = "idPaysComboAjout";
+      c.class_select = "class_Region";
+      c.data = myObj.PAYS.records;
+      //fonction_change
+      //c.fonction_change = cbRegionChange;
+
+      c.generer();
+
+      let modif = new Combo();
+      modif.id_zone = "comboModif";
+      modif.id_select = "idPaysComboModif";
+      modif.class_select = "class_PaysComboM";
+      modif.data = myObj.PAYS.records;
+      //fonction_change
+      //c.fonction_change = cbRegionChange;
+
+      modif.generer();
+    }
+
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     //function_modif pour le tableau pas touch
@@ -390,8 +391,8 @@
       let valeurs = e.target.value.split(",");
       document.getElementById("txtCodeModif").value = valeurs[0];
       document.getElementById("txtRegionModif").value = valeurs[1];
-      document.getElementById("txtPaysModif").value = valeurs[2];
-
+      // document.getElementById("txtPaysModif").value = valeurs[2];
+      //je me positionne dans le combo en recherchant le nom du pays contenu dans valeurs[2]///
     }
 
 
@@ -469,7 +470,7 @@
       header.load();
       footer.load();
       //Mettre ici la création des COMBO dans les modals//////////
-      combo();
+      genererComboPays();
       //peut servir dans les fonctions pour faire mise a jour de la table
       afficher_Liste();
 
@@ -479,7 +480,8 @@
       let btnajout = document.getElementById("btnAjoutEnreg");
       btnajout.addEventListener("click", () => {
         let params = Get_zones_ajout();
-        let Ajax = new Ajax_Es6(url);
+        alert(params);
+        let Ajax = new Ajax_Es6(url + "REGION");
         Ajax.post(params, RetourPays_ajout, Erreur_Ajax_ajout);
       }, false);
 
@@ -491,8 +493,9 @@
         //alert("Modif enregistré");
         let code = document.getElementById("txtCodeModif").value;
         let params = Get_zones_modif();
-        Obj_AJAX.Cle = code;
-        Obj_AJAX.put(params, RetourAjax_modif, Erreur_Ajax_modif);
+        let Ajax = new Ajax_Es6(url + "REGION");
+        Ajax.Cle = code;
+        Ajax.put(params, RetourAjax_modif, Erreur_Ajax_modif);
       }, false);
       /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
