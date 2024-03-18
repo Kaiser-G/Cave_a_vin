@@ -368,20 +368,17 @@
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
-    //function_modif pour le tableau pas touch
+    //function_modif pour le tableau 
     function modifRegion(e) {
-      console.log(e);
-      alert("Click sur modif region");
+      //console.log(e);
+      //alert("Click sur modif region");
       let valeurs = e.target.value.split(",");
       document.getElementById("txtCodeModif").value = valeurs[0];
       document.getElementById("txtRegionModif").value = valeurs[1];
       // document.getElementById("txtPaysModif").value = valeurs[2];
       //je me positionne dans le combo en recherchant le nom du pays contenu dans valeurs[2]///
-
-      //Le pays s'affiche deux fois !!!!!!!!!
-      const text = document.getElementById("txtPaysModif").value = valeurs[2];
+      const text = valeurs[2];
       const select = document.querySelector("#idPaysComboModif");
-
       const options = Array.from(select.options);
       const optionToSelect = options.find((item) => item.text === text);
       console.log(optionToSelect);
@@ -398,7 +395,7 @@
     //bouton enregistrer dans la fenetre modal modif
 
     function RetourAjax_modif(e) {
-      alert("bien modifiée avec le code : entrée fonction RetourAjax" + e);
+      //alert("bien modifiée avec le code : entrée fonction RetourAjax" + e);
       afficher_Liste();
       message("primary", "Région modifiée");
     }
@@ -437,23 +434,27 @@
         "Êtes-vous certain de vouloir supprimer cette ligne ?"
       );
       if (reponse) {
-        Obj_AJAX.Cle = valeurs[0]; // Recupération du code à supprimer
-        Obj_AJAX.del(retourAjaxSuppr, erreur);
+        let Ajax = new Ajax_Es6(url + "REGION");
+        Ajax.Cle = valeurs[0]; // Recupération du code à supprimer let Obj_AJAX = new Ajax_Es6(url);
+        Ajax.del(retourAjaxSuppr, erreur);
       }
       console.log(reponse);
     }
     function retourAjaxSuppr(reponse) {
-      // Liste des régions
-      afficher_Liste();
+      alert(reponse)
 
       if (reponse === "1") {
-        //alert("supprimée")
-        message("danger", "Ligne supprimée");
+        alert("Supprimée")
+        message("primary", "Ligne supprimée");
 
       } else {
-        document.getElementById("message").innerHTML = " ligne non supprimée"
+        alert("Pas supprimée")
+        document.getElementById("message").innerHTML = " ligne non supprimée";
+        message("danger", "Ligne NON supprimée");
 
       }
+      // Liste des régions
+      afficher_Liste();
     }
     function erreur(reponse) {
       alert("Erreur Ajax " + reponse);
@@ -489,7 +490,7 @@
       //bouton enregistrer dans la modal modif
       let btnEnreg = document.getElementById("btnModifEnreg");
       btnEnreg.addEventListener("click", (e) => {
-        alert("Modif enregistré");
+        //alert("Modif enregistré");
         let code = document.getElementById("txtCodeModif").value;
         let params = Get_zones_modif();
         let Ajax = new Ajax_Es6(url + "REGION");
