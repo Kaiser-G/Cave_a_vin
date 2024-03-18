@@ -147,7 +147,7 @@
           <label for="pwd">Nom de la région</label>
         </div>
         <div class="form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtPaysAjout" placeholder="Enter pays" name="paysAjout">
+          <input type="text" class="form-control" id="txtPaysModif" placeholder="Enter pays" name="paysModif">
           <label for="pwd">Pays</label>
           <div id="comboModif"></div>
         </div>
@@ -270,9 +270,9 @@
       tab.icone_suppr = "btn-sm fas fa-trash fa-sm";
 
       //Les méthodes
-      tab.fonction_modif = modifClient;
-      tab.fonction_suppr = supprClient;
-      tab.fonction_vue = vueClient;
+      tab.fonction_modif = modifRegion;
+      tab.fonction_suppr = supprRegion;
+      tab.fonction_vue = vueRegion;
 
       //Class BS
       tab.BS_class_vue = "btn btn-success";//Class Bootstrap
@@ -369,8 +369,9 @@
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
     //function_modif pour le tableau pas touch
-    function modifClient(e) {
-      //alert("Click sur modif voiture");
+    function modifRegion(e) {
+      console.log(e);
+      alert("Click sur modif region");
       let valeurs = e.target.value.split(",");
       document.getElementById("txtCodeModif").value = valeurs[0];
       document.getElementById("txtRegionModif").value = valeurs[1];
@@ -379,10 +380,10 @@
     }
 
 
-    //bouton enregistrer dans la fenetre modal
+    //bouton enregistrer dans la fenetre modal modif
 
     function RetourAjax_modif(e) {
-      //alert("bien modifiée avec le code : entrée fonction RetourAjax" + e);
+      alert("bien modifiée avec le code : entrée fonction RetourAjax" + e);
       afficher_Liste();
       message("primary", "Région modifiée");
     }
@@ -390,9 +391,9 @@
     function Get_zones_modif(e) {
       // Au format JSON
       let obj = {};
-      obj.id = document.getElementById("txtCodeModif").value;
-      obj.nom = document.getElementById("txtRegionModif").value;
-      obj.prenom = document.getElementById("txtPaysModif").value;
+      obj.CODEREGION = document.getElementById("txtCodeModif").value;
+      obj.CODEPAYS = document.getElementById("idPaysComboModif").value;
+      obj.NOMREGION = document.getElementById("txtRegionModif").value;
 
       return JSON.stringify(obj);
     }
@@ -404,7 +405,7 @@
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //function_vue
-    function vueClient(e) {
+    function vueRegion(e) {
       let valeurs = e.target.value.split(",");
       document.getElementById("txtCodeVue").value = valeurs[0];
       document.getElementById("txtRegionVue").value = valeurs[1];
@@ -414,8 +415,8 @@
 
     //////////////////////////////////////////////////////////////////////////////////////////////////
     //fonction_suppr
-    function supprClient(e) {
-      //alert("Click sur supp voiture");
+    function supprRegion(e) {
+      alert("Click sur supp");
       let valeurs = e.target.value.split(",");
       let reponse = confirm(
         "Êtes-vous certain de vouloir supprimer cette ligne ?"
@@ -424,7 +425,7 @@
         Obj_AJAX.Cle = valeurs[0]; // Recupération du code à supprimer
         Obj_AJAX.del(retourAjaxSuppr, erreur);
       }
-
+      console.log(reponse);
     }
     function retourAjaxSuppr(reponse) {
       // Liste des régions
@@ -473,7 +474,7 @@
       //bouton enregistrer dans la modal modif
       let btnEnreg = document.getElementById("btnModifEnreg");
       btnEnreg.addEventListener("click", (e) => {
-        //alert("Modif enregistré");
+        alert("Modif enregistré");
         let code = document.getElementById("txtCodeModif").value;
         let params = Get_zones_modif();
         let Ajax = new Ajax_Es6(url + "REGION");
