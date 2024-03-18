@@ -377,6 +377,21 @@
       document.getElementById("txtRegionModif").value = valeurs[1];
       // document.getElementById("txtPaysModif").value = valeurs[2];
       //je me positionne dans le combo en recherchant le nom du pays contenu dans valeurs[2]///
+
+      //Le pays s'affiche deux fois !!!!!!!!!
+      const text = document.getElementById("txtPaysModif").value = valeurs[2];
+      const select = document.querySelector("#idPaysComboModif");
+
+      const options = Array.from(select.options);
+      const optionToSelect = options.find((item) => item.text === text);
+      console.log(optionToSelect);
+      if (optionToSelect != undefined) {
+        select.value = optionToSelect.value;
+      } else {
+        alert("Valeur non trouvée");
+      }
+
+
     }
 
 
@@ -482,6 +497,11 @@
         Ajax.put(params, RetourAjax_modif, Erreur_Ajax_modif);
       }, false);
       /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
 
     }, false);
 
