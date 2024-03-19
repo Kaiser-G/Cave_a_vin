@@ -110,13 +110,33 @@
           <label for="email">Code</label>
         </div>
         <div class="form-floating mt-3 mb-3">
+          <input type="text" class="form-control" id="txtCuveeVue" placeholder="Enter cuvee" name="cuveeVue" readonly>
+          <label for="pwd">Nom de la cuvée</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+          <input type="text" class="form-control" id="txtAppellationVue" placeholder="Enter appellation"
+            name="appellationVue" readonly>
+          <label for="pwd">Appellation</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
           <input type="text" class="form-control" id="txtRegionVue" placeholder="Enter region" name="regionVue"
             readonly>
           <label for="pwd">Nom de la région</label>
         </div>
         <div class="form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtPaysVue" placeholder="Enter pays" name="paysVue" readonly>
-          <label for="pwd">Pays</label>
+          <input type="text" class="form-control" id="txtCouleurVue" placeholder="Enter couleur" name="couleurVue"
+            readonly>
+          <label for="pwd">Type de vin</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+          <input type="text" class="form-control" id="txtCultureVue" placeholder="Enter culture" name="cultureVue"
+            readonly>
+          <label for="pwd">Type de culture</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+          <input type="text" class="form-control" id="txtCommVue" placeholder="Enter commentaire" name="commentaireVue"
+            readonly>
+          <label for="pwd">Commentaire</label>
         </div>
 
         <div class="modal-footer">
@@ -218,7 +238,7 @@
       //je reformate le resultat pour utilisation dans la class tab
       let myData = new Array();
       myObj.VIN.forEach(element => {
-        myData.push([element.CODEVIN, element.NOM_CUVEE, element.CODEAPPELLATION, element.CODEREGION, element.CODECOULEUR, element.TYPE_DE_CULTURE, element.COMMENTAIRES]);
+        myData.push([element.CODEVIN, element.NOM_CUVEE, element.APPELLATION[0].NOMAPPELLATION, element.CODEREGION, element.CODECOULEUR, element.TYPE_DE_CULTURE, element.COMMENTAIRES]);
       });
 
 
@@ -292,7 +312,7 @@
 
     function afficher_Liste() {
       // Liste des regions__dans Url = "changer en fonction de l'api"
-      Obj_AJAX.Url = url + "VIN?include=APPELLATION&transform=1"; //?include=PAYS&transform=1
+      Obj_AJAX.Url = url + "VIN?include=APPELLATION&transform=1"; //?include=APPELLATION&transform=1 columns=CODEREGION,NOMREGION
       Obj_AJAX.get(RetourGetAjax, ErreurAjax);
     }
 
@@ -418,9 +438,12 @@
     function vueRegion(e) {
       let valeurs = e.target.value.split(",");
       document.getElementById("txtCodeVue").value = valeurs[0];
-      document.getElementById("txtRegionVue").value = valeurs[1];
-      document.getElementById("txtPaysVue").value = valeurs[2];
-      // document.getElementById("txtMailVue").value = valeurs[3];
+      document.getElementById("txtCuveeVue").value = valeurs[1];
+      document.getElementById("txtAppellationVue").value = valeurs[2];
+      document.getElementById("txtRegionVue").value = valeurs[3];
+      document.getElementById("txtCouleurVue").value = valeurs[4];
+      document.getElementById("txtCultureVue").value = valeurs[5];
+      document.getElementById("txtCommVue").value = valeurs[6];
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////
