@@ -5,11 +5,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image" href="../images/lézard.png" type="image/x-icon">
-  <title>Exercice 1 (VOITURE_table_complete_class.html):</title>
+  <title>Catalogue des vins</title>
   <!-- CDN CSS de BOOTSTRAP  -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Bootstrap Icons CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" rel="stylesheet">
+
 
   <!-- CDN de FONTAWSOME pour les ICONES  -->
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
@@ -40,20 +44,25 @@
   <br>
   <br>
   <img id="contact" src="../images/contact.png" class="rounded float-right" alt="">
-  <h1 class="text-center">Clients avec class</h1>
+  <h1 class="text-center">Catalogue des vins</h1>
   <br>
+  <!--A EFFACER-->
+  <div id="testCombo" class="text-center"></div>
+  <!--A EFFACER-->
   <div class="container-fluid">
     <div id="message"></div>
     <br>
-    <button id="btnAjout" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#frmAjout">Nouveau</button>
-    <br>
+    <button id="btnAjout" class="bi bi-plus-square btn btn-primary" data-bs-toggle="modal" data-bs-target="#frmAjout">
+      _Nouveau</button><br>
     <br>
     <div id="zone"></div>
   </div>
 
 
+
   <footer id="idFooter"></footer>
   <!-----------------Pour les fenetres modal------------------------------>
+
 
 
   <!--Fenetre modal Ajout-->
@@ -62,22 +71,23 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ajouter un nouveau client</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Ajouter une nouvelle région</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <div class="form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtNomAjout" placeholder="Enter nom" name="nomAjout">
-          <label for="pwd">Nom</label>
+        <div class="form-group form-floating mt-3 mb-3">
+          <input type="text" class="form-control" id="txtPaysAjout" placeholder="Enter pays" name="paysAjout">
+
+          <label for="pays">Pays</label>
+          <div id="comboAjout"></div>
+
+
         </div>
         <div class="form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtPrenomAjout" placeholder="Enter prenom" name="prenomAjout">
-          <label for="pwd">Prénom</label>
+          <input type="text" class="form-control" id="txtRegionAjout" placeholder="Enter region" name="regionAjout">
+          <label for="pwd">Nom région</label>
         </div>
-        <div class="form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtMailAjout" placeholder="Enter mail" name="mailAjout">
-          <label for="pwd">Mail</label>
-        </div>
+
 
         <div class="modal-footer">
           <button id="btnAjoutEnreg" type="button" class="btn btn-success" data-bs-dismiss="modal">Enregistrer</button>
@@ -98,21 +108,17 @@
         </div>
 
         <div class="form-floating mb-3 mt-3">
-          <input type="text" class="form-control" id="txtIdVue" placeholder="Enter id" name="idVue" readonly>
-          <label for="email">Id</label>
+          <input type="text" class="form-control" id="txtCodeVue" placeholder="Enter code" name="codeVue" readonly>
+          <label for="email">Code</label>
         </div>
         <div class="form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtNomVue" placeholder="Enter nom" name="nomVue" readonly>
-          <label for="pwd">Nom</label>
-        </div>
-        <div class="form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtPrenomVue" placeholder="Enter prenom" name="prenomVue"
+          <input type="text" class="form-control" id="txtRegionVue" placeholder="Enter region" name="regionVue"
             readonly>
-          <label for="pwd">Prénom</label>
+          <label for="pwd">Nom de la région</label>
         </div>
         <div class="form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtMailVue" placeholder="Enter mail" name="mailVue" readonly>
-          <label for="pwd">Mail</label>
+          <input type="text" class="form-control" id="txtPaysVue" placeholder="Enter pays" name="paysVue" readonly>
+          <label for="pwd">Pays</label>
         </div>
 
         <div class="modal-footer">
@@ -133,20 +139,17 @@
         </div>
 
         <div class="form-floating mb-3 mt-3">
-          <input type="text" class="form-control" id="txtIdModif" placeholder="Enter id" name="idModif" readonly>
-          <label for="email">Id</label>
+          <input type="text" class="form-control" id="txtCodeModif" placeholder="Enter code" name="codeModif" readonly>
+          <label for="email">Code</label>
         </div>
         <div class="form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtNomModif" placeholder="Enter nom" name="nomModif">
-          <label for="pwd">Nom</label>
+          <input type="text" class="form-control" id="txtRegionModif" placeholder="Enter region" name="regionModif">
+          <label for="pwd">Nom de la région</label>
         </div>
         <div class="form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtPrenomModif" placeholder="Enter prenom" name="prenomModif">
-          <label for="pwd">Prénom</label>
-        </div>
-        <div class="form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtMailModif" placeholder="Enter mail" name="mailModif">
-          <label for="pwd">Mail</label>
+          <input type="text" class="form-control" id="txtPaysModif" placeholder="Enter pays" name="paysModif">
+          <label for="pwd">Pays</label>
+          <div id="comboModif"></div>
         </div>
 
         <div class="modal-footer">
@@ -162,7 +165,8 @@
   <script src="./Js class/ajax_Class_Html.js"></script>
   <script src="./Js class/80table_ES6.js"></script>
   <script src="./Js class/Ajax_class.js"></script>
-  <script src="./Js class/init_users_ES6.js"></script>
+  <script src="./Js class/init_class.js"></script>
+  <script src="./js class/Combo.js"></script>
   <!-------------------------------------
       		CDN JS pour BOOTSTRAP  
       	--------------------------------------->
@@ -186,7 +190,7 @@
 
     ////////////////////////////////
     //    La fonction pour activer la recherche sur la TABLE
-    ////////////////////////////////NE FONCTIONNE PAS
+    ////////////////////////////////
     function search(saisie, table) {
 
       let zoneRecherche = document.getElementById(saisie);
@@ -213,6 +217,12 @@
     //creation du tableau
     function RetourGetAjax(reponse) {
       let myObj = JSON.parse(reponse);
+      //je reformate le resultat pour utilisation dans la class tab
+      let myData = new Array();
+      myObj.REGION.forEach(element => {
+        myData.push([element.CODEREGION, element.NOMREGION, element.PAYS[0].NOMPAYS]);
+      });
+
 
 
       // // Efface la zone et ajoute la zone de recherche
@@ -224,7 +234,7 @@
       //création de new class
       let tab = new Table();
       tab.id_zone = "zone";
-      tab.class_table = "table table-dark table_hover";
+      tab.class_table = "table table-dark table_hover text-center";
 
 
       //pour les fenetres Modal Bootstrap (objet JSON) rajoute data-bs-toggle modal etc...
@@ -247,8 +257,9 @@
 
 
       //data = les données
-      tab.data = myObj.users.records;
-      tab.header = ["Id", "Nom", "Prénom", "Mail"];
+      //myData viens de la boucle au dessus
+      tab.data = myData;
+      tab.header = ["Code", "Nom de la région", "Pays"];
       tab.class_modif = "";//class sans Bootstrap
       tab.class_suppr = "";
       tab.class_vue = "";
@@ -259,9 +270,9 @@
       tab.icone_suppr = "btn-sm fas fa-trash fa-sm";
 
       //Les méthodes
-      tab.fonction_modif = modifClient;
-      tab.fonction_suppr = supprClient;
-      tab.fonction_vue = vueClient;
+      tab.fonction_modif = modifRegion;
+      tab.fonction_suppr = supprRegion;
+      tab.fonction_vue = vueRegion;
 
       //Class BS
       tab.BS_class_vue = "btn btn-success";//Class Bootstrap
@@ -282,8 +293,8 @@
     //affiche le tableau
 
     function afficher_Liste() {
-      // Liste des clients
-      Obj_AJAX.Cle = "";
+      // Liste des regions__dans Url = "changer en fonction de l'api"
+      Obj_AJAX.Url = url + "REGION?include=PAYS&transform=1";
       Obj_AJAX.get(RetourGetAjax, ErreurAjax);
     }
 
@@ -305,59 +316,97 @@
         message +
         "</div>";
     }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    //////////////////////////Pour les modal////////////////////
 
-    //Pour les modal
+    //Function Ajout nouvelle région
 
-    //Function Ajout nouvelle voiture
-    //Sur le bouton enregistrer de la fenetre modal Nouveau avec id="btnAjoutEnreg"
-    function RetourClient_ajout() {
-      //alert("Nouvelle voiture ajoutée");
-      afficher_Liste();
-      message("success", "Nouveau client ajoutée");
-    }
-
-    function Get_zones_ajout() {
+    function Get_zones_ajout(reponse) {
       // Au format JSON
+      //a modif a chaque API
       let obj = {};
-      obj.nom = document.getElementById("txtNomAjout").value;
-      obj.prenom = document.getElementById("txtPrenomAjout").value;
-      obj.email = document.getElementById("txtMailAjout").value;
+      obj.NOMREGION = document.getElementById("txtRegionAjout").value;
+      obj.CODEPAYS = document.getElementById("idPaysComboAjout").value;
+
       return JSON.stringify(obj);
+    }
+    function RetourPays_ajout(reponse) {
+      afficher_Liste();
+      message("success", "Nouvelle région ajoutée");
     }
 
     function Erreur_Ajax_ajout(reponse) {
       alert("Erreur Ajax ");
-
     }
 
-    /////////////////////////////////////////////////////////////////////////////////
-    //function_modif pour le tableau pas touch
-    function modifClient(e) {
-      //alert("Click sur modif voiture");
+    function genererComboPays() {
+      Obj_AJAX.Url = url + "PAYS?order=NOMPAYS,asc";
+      Obj_AJAX.get(RetourGetPaysAjax, ErreurAjax);
+    }
+
+    //Combo pour la modal AJOUT
+    function RetourGetPaysAjax(reponse) {
+      let myObj = JSON.parse(reponse);
+      let ajout = new Combo();
+      ajout.id_zone = "comboAjout";
+      ajout.id_select = "idPaysComboAjout";
+      ajout.class_select = "class_Region";
+      ajout.data = myObj.PAYS.records;
+
+      ajout.generer();
+      /////////////////////////////////////////
+      //Combo pour la modal MODIF
+      let modif = new Combo();
+      modif.id_zone = "comboModif";
+      modif.id_select = "idPaysComboModif";
+      modif.class_select = "class_PaysComboM";
+      modif.data = myObj.PAYS.records;
+
+      modif.generer();
+    }
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    //function_modif pour le tableau 
+    function modifRegion(e) {
+      //console.log(e);
+      //alert("Click sur modif region");
       let valeurs = e.target.value.split(",");
-      document.getElementById("txtIdModif").value = valeurs[0];
-      document.getElementById("txtNomModif").value = valeurs[1];
-      document.getElementById("txtPrenomModif").value = valeurs[2];
-      document.getElementById("txtMailModif").value = valeurs[3];
+      document.getElementById("txtCodeModif").value = valeurs[0];
+      document.getElementById("txtRegionModif").value = valeurs[1];
+      // document.getElementById("txtPaysModif").value = valeurs[2];
+      //je me positionne dans le combo en recherchant le nom du pays contenu dans valeurs[2]///
+      const text = valeurs[2];
+      const select = document.querySelector("#idPaysComboModif");
+      const options = Array.from(select.options);
+      const optionToSelect = options.find((item) => item.text === text);
+      console.log(optionToSelect);
+      if (optionToSelect != undefined) {
+        select.value = optionToSelect.value;
+      } else {
+        alert("Valeur non trouvée");
+      }
+
+
     }
 
 
-    //bouton enregistrer dans la fenetre modal
+    //bouton enregistrer dans la fenetre modal modif
 
     function RetourAjax_modif(e) {
-      //alert("Voiture bien modifiée avec le code : entrée fonction RetourAjax" + e);
+      //alert("bien modifiée avec le code : entrée fonction RetourAjax" + e);
       afficher_Liste();
-      message("primary", "Client modifiée");
+      message("primary", "Région modifiée");
     }
 
     function Get_zones_modif(e) {
       // Au format JSON
       let obj = {};
-      obj.id = document.getElementById("txtIdModif").value;
-      obj.nom = document.getElementById("txtNomModif").value;
-      obj.prenom = document.getElementById("txtPrenomModif").value;
-      obj.email = document.getElementById("txtMailModif").value;
+      obj.CODEREGION = document.getElementById("txtCodeModif").value;
+      obj.CODEPAYS = document.getElementById("idPaysComboModif").value;
+      obj.NOMREGION = document.getElementById("txtRegionModif").value;
+
       return JSON.stringify(obj);
     }
 
@@ -368,40 +417,44 @@
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //function_vue
-    function vueClient(e) {
+    function vueRegion(e) {
       let valeurs = e.target.value.split(",");
-      document.getElementById("txtIdVue").value = valeurs[0];
-      document.getElementById("txtNomVue").value = valeurs[1];
-      document.getElementById("txtPrenomVue").value = valeurs[2];
-      document.getElementById("txtMailVue").value = valeurs[3];
+      document.getElementById("txtCodeVue").value = valeurs[0];
+      document.getElementById("txtRegionVue").value = valeurs[1];
+      document.getElementById("txtPaysVue").value = valeurs[2];
+      // document.getElementById("txtMailVue").value = valeurs[3];
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////
     //fonction_suppr
-    function supprClient(e) {
-      //alert("Click sur supp voiture");
+    function supprRegion(e) {
+      //alert("Click sur supp");
       let valeurs = e.target.value.split(",");
       let reponse = confirm(
-        "Êtes-vous certain de vouloir supprimer ce client ?"
+        "Êtes-vous certain de vouloir supprimer cette ligne ?"
       );
       if (reponse) {
-        Obj_AJAX.Cle = valeurs[0]; // Recupération du code à supprimer
-        Obj_AJAX.del(retourAjaxSuppr, erreur);
+        let Ajax = new Ajax_Es6(url + "REGION");
+        Ajax.Cle = valeurs[0]; // Recupération du code à supprimer
+        Ajax.del(retourAjaxSuppr, erreur);
       }
-
+      console.log(reponse);
     }
     function retourAjaxSuppr(reponse) {
-      // Liste des voitures
-      afficher_Liste();
+      //alert(reponse)
 
       if (reponse === "1") {
-        //alert("Voiture supprimée")
-        message("danger", "Client supprimée");
+        //alert("Supprimée")
+        message("primary", "Ligne supprimée");
 
       } else {
-        document.getElementById("message").innerHTML = " client non supprimée"
+        //alert("Pas supprimée")
+        document.getElementById("message").innerHTML = " ligne non supprimée";
+        message("danger", "Ligne NON supprimée");
 
       }
+      // Liste des régions
+      afficher_Liste();
     }
     function erreur(reponse) {
       alert("Erreur Ajax " + reponse);
@@ -416,6 +469,8 @@
       let footer = new loadHTML("idFooter", "../Header_footer/FOOTER.html");
       header.load();
       footer.load();
+      //Mettre ici la création des COMBO dans les modals//////////
+      genererComboPays();
       //peut servir dans les fonctions pour faire mise a jour de la table
       afficher_Liste();
 
@@ -425,8 +480,9 @@
       let btnajout = document.getElementById("btnAjoutEnreg");
       btnajout.addEventListener("click", () => {
         let params = Get_zones_ajout();
-        let Ajax = new Ajax_Es6(url);
-        Ajax.post(params, RetourClient_ajout, Erreur_Ajax_ajout);
+        //alert(params);
+        let Ajax = new Ajax_Es6(url + "REGION");
+        Ajax.post(params, RetourPays_ajout, Erreur_Ajax_ajout);
       }, false);
 
       //////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -435,12 +491,18 @@
       let btnEnreg = document.getElementById("btnModifEnreg");
       btnEnreg.addEventListener("click", (e) => {
         //alert("Modif enregistré");
-        let code = document.getElementById("txtIdModif").value;
+        let code = document.getElementById("txtCodeModif").value;
         let params = Get_zones_modif();
-        Obj_AJAX.Cle = code;
-        Obj_AJAX.put(params, RetourAjax_modif, Erreur_Ajax_modif);
+        let Ajax = new Ajax_Es6(url + "REGION");
+        Ajax.Cle = code;
+        Ajax.put(params, RetourAjax_modif, Erreur_Ajax_modif);
       }, false);
       /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
 
     }, false);
 
