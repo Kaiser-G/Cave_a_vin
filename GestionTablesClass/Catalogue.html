@@ -72,18 +72,39 @@
           <h5 class="modal-title" id="exampleModalLabel">Ajouter une nouvelle région</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="form-floating mt-3 mb-3">
+          <input type="text" class="form-control" id="txtCuveeAjout" placeholder="Enter cuvee" name="cuveeAjout">
+          <label for="pwd">Nom de la cuvée</label>
+        </div>
 
         <div class="form-group form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtPaysAjout" placeholder="Enter pays" name="paysAjout">
-
-          <label for="pays">Pays</label>
-          <div id="comboAjout"></div>
-
-
+          <input type="text" class="form-control" id="txtAppellationAjout" placeholder="Enter appellation"
+            name="appellationAjout">
+          <label for="pays">Appellation</label>
+          <div id="comboAppellationAjout"></div>
         </div>
-        <div class="form-floating mt-3 mb-3">
+
+        <div class="form-group form-floating mt-3 mb-3">
           <input type="text" class="form-control" id="txtRegionAjout" placeholder="Enter region" name="regionAjout">
-          <label for="pwd">Nom région</label>
+          <label for="pays">Nom région</label>
+          <div id="comboRegionAjout"></div>
+        </div>
+
+        <div class="form-group form-floating mt-3 mb-3">
+          <input type="text" class="form-control" id="txtCouleurAjout" placeholder="Enter couleur" name="couleurAjout">
+          <label for="pays">Type de vin</label>
+          <div id="comboCouleurAjout"></div>
+        </div>
+
+        <div class="form-floating mt-3 mb-3">
+          <input type="text" class="form-control" id="txtCultureAjout" placeholder="Enter culture" name="cultureAjout">
+          <label for="pwd">Type de culture</label>
+        </div>
+
+        <div class="form-floating mt-3 mb-3">
+          <input type="text" class="form-control" id="txtCommAjout" placeholder="Enter commentaire"
+            name="commentaireAjout">
+          <label for="pwd">Commentaire</label>
         </div>
 
 
@@ -339,18 +360,20 @@
 
     //////////////////////////Pour les modal////////////////////
 
-    //Function Ajout nouvelle région
+    //Function Ajout nouveau vin
 
     function Get_zones_ajout(reponse) {
       // Au format JSON
       //a modif a chaque API
       let obj = {};
-      obj.NOMREGION = document.getElementById("txtRegionAjout").value;
-      obj.CODEPAYS = document.getElementById("idPaysComboAjout").value;
+      obj.NOM_CUVEE = document.getElementById("txtCuveeAjout").value;
+      obj.CODEAPPELLATION = document.getElementById("idAppellationComboAjout").value;//ID du COMBO
+      obj.NOMREGION = document.getElementById("idRegionComboAjout").value;//ID du COMBO
+      //obj.CODEPAYS = document.getElementById("idPaysComboAjout").value;//ID du COMBO
 
       return JSON.stringify(obj);
     }
-    function RetourPays_ajout(reponse) {
+    function RetourApp_ajout(reponse) {
       afficher_Liste();
       message("success", "Nouvelle région ajoutée");
     }
@@ -358,22 +381,42 @@
     function Erreur_Ajax_ajout(reponse) {
       alert("Erreur Ajax ");
     }
+    //ATTENTION modif a faire url + "METTRE le nom de l'API visé"
+    function genererComboApp() {
+      Obj_AJAX.Url = url + "APPELLATION?order=NOMAPPELLATION,asc";
+      Obj_AJAX.get(RetourGetAppAjax, ErreurAjax);
+    }
 
-    function genererComboPays() {
-      Obj_AJAX.Url = url + "PAYS?order=NOMPAYS,asc";
-      Obj_AJAX.get(RetourGetPaysAjax, ErreurAjax);
+    function genererComboReg() {
+      Obj_AJAX.Url = url + "REGION?order=NOMAPPELLATION,asc";
+      Obj_AJAX.get(RetourGetAppAjax, ErreurAjax);
     }
 
     //Combo pour la modal AJOUT
-    function RetourGetPaysAjax(reponse) {
+    //COMBO APPELLATION
+    function RetourGetAppAjax(reponse) {
       let myObj = JSON.parse(reponse);
       let ajout = new Combo();
-      ajout.id_zone = "comboAjout";
-      ajout.id_select = "idPaysComboAjout";
-      ajout.class_select = "class_Region";
-      ajout.data = myObj.PAYS.records;
+      ajout.id_zone = "comboAppellationAjout";
+      ajout.id_select = "idAppellationComboAjout";
+      ajout.class_select = "class_Appellation";
+      ajout.data = myObj.APPELLATION.records;
 
       ajout.generer();
+
+      //COMBO REGION
+      let myReg = JSON.parse(reponse);
+      let reg = new Combo();
+      reg.id_zone = "comboRegionAjout";
+      reg.id_select = "idRegionComboAjout";
+      reg.class_select = "class_Appellation";
+      reg.data = myObj.REGION.records;
+
+      reg.generer();
+
+
+
+      //////////////////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////
       //Combo pour la modal MODIF
       let modif = new Combo();
@@ -492,7 +535,8 @@
       header.load();
       footer.load();
       //Mettre ici la création des COMBO dans les modals//////////
-      genererComboPays();
+      genererComboApp();
+      genererComboReg();
       //peut servir dans les fonctions pour faire mise a jour de la table
       afficher_Liste();
 
