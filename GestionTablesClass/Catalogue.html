@@ -46,9 +46,7 @@
   <img id="contact" src="../images/contact.png" class="rounded float-right" alt="">
   <h1 class="text-center">Catalogue des vins</h1>
   <br>
-  <!--A EFFACER-->
-  <div id="testCombo" class="text-center"></div>
-  <!--A EFFACER-->
+
   <div class="container-fluid">
     <div id="message"></div>
     <br>
@@ -219,8 +217,8 @@
       let myObj = JSON.parse(reponse);
       //je reformate le resultat pour utilisation dans la class tab
       let myData = new Array();
-      myObj.REGION.forEach(element => {
-        myData.push([element.CODEREGION, element.NOMREGION, element.PAYS[0].NOMPAYS]);
+      myObj.VIN.forEach(element => {
+        myData.push([element.CODEVIN, element.NOM_CUVEE, element.CODEAPPELLATION, element.CODEREGION, element.CODECOULEUR, element.TYPE_DE_CULTURE, element.COMMENTAIRES]);
       });
 
 
@@ -259,7 +257,7 @@
       //data = les données
       //myData viens de la boucle au dessus
       tab.data = myData;
-      tab.header = ["Code", "Nom de la région", "Pays"];
+      tab.header = ["Code", "Nom de la cuvée", "Appellation", "Nom de la région", "Type de vin", "Type de culture", "Commentaires"];
       tab.class_modif = "";//class sans Bootstrap
       tab.class_suppr = "";
       tab.class_vue = "";
@@ -294,7 +292,7 @@
 
     function afficher_Liste() {
       // Liste des regions__dans Url = "changer en fonction de l'api"
-      Obj_AJAX.Url = url + "REGION?include=PAYS&transform=1";
+      Obj_AJAX.Url = url + "VIN?include=APPELLATION&transform=1"; //?include=PAYS&transform=1
       Obj_AJAX.get(RetourGetAjax, ErreurAjax);
     }
 
