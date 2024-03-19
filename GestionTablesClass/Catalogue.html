@@ -313,6 +313,7 @@
     function afficher_Liste() {
       // Liste des regions__dans Url = "changer en fonction de l'api"
       Obj_AJAX.Url = url + "VIN?include=APPELLATION&transform=1"; //?include=APPELLATION&transform=1 columns=CODEREGION,NOMREGION
+      //Obj_AJAX.Url += url + "VIN?include=REGION&transform=1";
       Obj_AJAX.get(RetourGetAjax, ErreurAjax);
     }
 
