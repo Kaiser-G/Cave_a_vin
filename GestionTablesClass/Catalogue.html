@@ -21,7 +21,12 @@
 </head>
 <style>
   body {
-    background-color: aquamarine !important;
+    /* background-color: aquamarine !important; */
+    background-image: url(../images/caveTonneau.jpg) !important;
+  }
+
+  h1 {
+    color: aliceblue !important;
   }
 
   #alert {
@@ -80,13 +85,13 @@
         <div class="form-group form-floating mt-3 mb-3">
           <input type="text" class="form-control" id="txtAppellationAjout" placeholder="Enter appellation"
             name="appellationAjout">
-          <label for="pays">Appellation</label>
+          <label for="App">Appellation</label>
           <div id="comboAppellationAjout"></div>
         </div>
 
         <div class="form-group form-floating mt-3 mb-3">
           <input type="text" class="form-control" id="txtRegionAjout" placeholder="Enter region" name="regionAjout">
-          <label for="pays">Nom région</label>
+          <label for="Region">Nom région</label>
           <div id="comboRegionAjout"></div>
         </div>
 
@@ -387,6 +392,9 @@
         " alert-dismissible' ><button type='button' class = 'btn-close' data-bs-dismiss = 'alert' role='alert' aria-label='Close'></button>" +
         message +
         "</div>";
+      setTimeout(function () {
+        document.getElementById("message").innerHTML = ''; // Supprime le contenu de l'élément d'affichage
+      }, 5000); // 5000 millisecondes (5 secondes)
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////
 
