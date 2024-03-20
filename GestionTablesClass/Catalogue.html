@@ -219,7 +219,7 @@
 
 
         <div class="modal-footer">
-          <button id="btnAjoutEnreg" type="button" class="btn btn-success" data-bs-dismiss="modal">Enregistrer</button>
+          <button id="btnModifEnreg" type="button" class="btn btn-success" data-bs-dismiss="modal">Enregistrer</button>
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
         </div>
       </div>
@@ -498,7 +498,7 @@
       let appmodif = new Combo();
       appmodif.id_zone = "comboAppellationModif";
       appmodif.id_select = "idAppComboModif";
-      appmodif.class_select = "form-control";//permet de modifier l'apparrnece
+      appmodif.class_select = "form-control";//permet de modifier l'apparrence
       appmodif.data = myObj.APPELLATION.records;
 
       appmodif.generer();
@@ -516,12 +516,12 @@
 
 
     //COMBO REGION dans MODIF
-    function RetourGetRegAjax(reponse) {
+    function RetourGetRegModifAjax(reponse) {
       let myObj = JSON.parse(reponse);
       let regmodif = new Combo();
       regmodif.id_zone = "comboRegionModif";
       regmodif.id_select = "idRegComboModif";
-      regmodif.class_select = "class_RegComboModif";
+      regmodif.class_select = "class_RegComboModif";//A modififier avec form-control
       regmodif.data = myObj.REGION.records;
 
       regmodif.generer();
@@ -529,11 +529,11 @@
 
     function genererComboregmodif() {
       let Ajax = new Ajax_Es6(url + "REGION?columns=CODEREGION,NOMREGION&order=NOMREGION,asc");
-      Ajax.get(RetourGetRegAjax, ErreurAjax);
+      Ajax.get(RetourGetRegModifAjax, ErreurAjax);
     }
 
     //COMBO COULEUR dans MODIF
-    function RetourGetCouleurAjax(reponse) {
+    function RetourGetCouleurModifAjax(reponse) {
       let myObj = JSON.parse(reponse);
       let colmodif = new Combo();
       colmodif.id_zone = "comboCouleurModif";
@@ -546,7 +546,7 @@
 
     function genererComboCouleurModif() {
       let Ajax = new Ajax_Es6(url + "COULEUR?order=NOMCOULEUR,asc");
-      Ajax.get(RetourGetCouleurAjax, ErreurAjax);
+      Ajax.get(RetourGetCouleurModifAjax, ErreurAjax);
     }
 
 
@@ -587,7 +587,7 @@
     function RetourAjax_modif(e) {
       //alert("bien modifiée avec le code : entrée fonction RetourAjax" + e);
       afficher_Liste();
-      message("primary", "Région modifiée");
+      message("primary", "Modification enregistrée");
     }
 
     function Get_zones_modif(e) {
@@ -669,6 +669,8 @@
       genererComboApp();
       genererComboReg();
       genererComboCouleur();
+      genererComboregmodif();
+      genererComboCouleurModif();
       //peut servir dans les fonctions pour faire mise a jour de la table
       afficher_Liste();
 
