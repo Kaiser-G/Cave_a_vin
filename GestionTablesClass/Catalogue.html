@@ -577,10 +577,10 @@
       //je me positionne dans le combo en recherchant le nom du pays contenu dans valeurs[2]///
 
       /////Pour appellation dans combo modif, on se positionne correctement sur l'appellation de la ligne
-      const text = valeurs[2];
+      const Nom_APPELLATION = valeurs[2];
       const select = document.querySelector("#idAppComboModif");
       const options = Array.from(select.options);
-      const optionToSelect = options.find((item) => item.text === text);
+      const optionToSelect = options.find((item) => item.text === Nom_APPELLATION);
       console.log(optionToSelect);
       if (optionToSelect != undefined) {
         select.value = optionToSelect.value;
@@ -594,10 +594,23 @@
       const Nom_REGION = valeurs[3];
       const select2 = document.querySelector("#idRegComboModif");
       const options2 = Array.from(select2.options);
-      const optionToSelect2 = options2.find((item) => item.text === text2);
+      const optionToSelect2 = options2.find((item) => item.text === Nom_REGION);
       console.log(optionToSelect2);
       if (optionToSelect2 != undefined) {
-        select.value = optionToSelect2.value;
+        select2.value = optionToSelect2.value;
+      } else {
+        alert("Valeur non trouvée");
+      }
+
+      /////Pour couleur dans combo modif, on se positionne correctement sur l'appellation de la ligne
+      const Nom_COULEUR = valeurs[4];
+      const select3 = document.querySelector("#idCouleurComboModif");
+      const options3 = Array.from(select3.options);
+      alert(options3);
+      const optionToSelect3 = options3.find((item) => item.text === Nom_COULEUR);
+      console.log(optionToSelect3);
+      if (optionToSelect3 != undefined) {
+        select3.value = optionToSelect3.value;
       } else {
         alert("Valeur non trouvée");
       }
