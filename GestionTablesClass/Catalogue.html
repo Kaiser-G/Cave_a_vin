@@ -401,7 +401,7 @@
       obj.NOM_CUVEE = document.getElementById("txtCuveeAjout").value;
       obj.CODEAPPELLATION = document.getElementById("idAppellationComboAjout").value;//ID du COMBO
       obj.CODEREGION = document.getElementById("idRegionComboAjout").value;//ID du COMBO
-      obj.CODECOULEUR = document.getElementById("idCouleurComboAjout").value;
+      obj.CODECOULEUR = document.getElementById("idCouleurComboAjout").value;//ID du COMBO
       obj.TYPE_DE_CULTURE = document.getElementById("txtCultureAjout").value;
       obj.COMMENTAIRES = document.getElementById("txtCommAjout").value;
 
@@ -417,7 +417,7 @@
     function Erreur_Ajax_ajout(reponse) {
       alert("Erreur Ajax ");
     }
-    //ATTENTION modif a faire url + "METTRE le nom de l'API visé"
+    //ATTENTION modif a faire : url + "METTRE le nom de l'API visé"
     function genererComboApp() {
       Obj_AJAX.Url = url + "APPELLATION?order=NOMAPPELLATION,asc";
       Obj_AJAX.get(RetourGetAppAjax, ErreurAjax);
@@ -435,12 +435,12 @@
     ///////////////////TEST REGION/////////////////////////////////////////////////////////
 
     //COMBO REGION AJOUT
-    function RetourGetRegAjax(reponse) {
+    function RetourGetRegAjoutAjax(reponse) {
       let myObj = JSON.parse(reponse);
       let reg = new Combo();
       reg.id_zone = "comboRegionAjout";
       reg.id_select = "idRegionComboAjout";
-      reg.class_select = "class_Region";
+      reg.class_select = "form-control";
       reg.data = myObj.REGION.records;
 
       reg.generer();
@@ -448,7 +448,7 @@
 
     function genererComboReg() {
       let Ajax = new Ajax_Es6(url + "REGION?columns=CODEREGION,NOMREGION&order=NOMREGION,asc");
-      Ajax.get(RetourGetRegAjax, ErreurAjax);
+      Ajax.get(RetourGetRegAjoutAjax, ErreurAjax);
     }
 
 
@@ -457,12 +457,12 @@
     ///////////////////TEST COULEUR/////////////////////////////////////////////////////////
 
     //COMBO COULEUR AJOUT
-    function RetourGetCouleurAjax(reponse) {
+    function RetourGetCouleurAjoutAjax(reponse) {
       let myObj = JSON.parse(reponse);
       let reg = new Combo();
       reg.id_zone = "comboCouleurAjout";
       reg.id_select = "idCouleurComboAjout";
-      reg.class_select = "class_Couleur";
+      reg.class_select = "form-control";
       reg.data = myObj.COULEUR.records;
 
       reg.generer();
@@ -470,7 +470,7 @@
 
     function genererComboCouleur() {
       let Ajax = new Ajax_Es6(url + "COULEUR?order=NOMCOULEUR,asc");
-      Ajax.get(RetourGetCouleurAjax, ErreurAjax);
+      Ajax.get(RetourGetCouleurAjoutAjax, ErreurAjax);
     }
 
 
@@ -485,7 +485,7 @@
       let ajout = new Combo();
       ajout.id_zone = "comboAppellationAjout";
       ajout.id_select = "idAppellationComboAjout";
-      ajout.class_select = "class_Appellation";
+      ajout.class_select = "form-control";
       ajout.data = myObj.APPELLATION.records;
 
       ajout.generer();
@@ -498,7 +498,7 @@
       let appmodif = new Combo();
       appmodif.id_zone = "comboAppellationModif";
       appmodif.id_select = "idAppComboModif";
-      appmodif.class_select = "class_APPComboModif";
+      appmodif.class_select = "form-control";//permet de modifier l'apparrnece
       appmodif.data = myObj.APPELLATION.records;
 
       appmodif.generer();
@@ -551,8 +551,8 @@
 
 
 
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////MODIF///////////////////////////////////////////////////////////////
     //function_modif pour le tableau 
     function modifRegion(e) {
       //console.log(e);
@@ -562,7 +562,7 @@
       document.getElementById("txtCuveeModif").value = valeurs[1];
       document.getElementById("txtAppellationModif").value = valeurs[2];
       document.getElementById("txtRegionModif").value = valeurs[3];
-      document.getElementById("yxyCouleurModif").value = valeurs[4];
+      document.getElementById("txtCouleurModif").value = valeurs[4];
       document.getElementById("txtCultureModif").value = valeurs[5];
       document.getElementById("txtCommModif").value = valeurs[6];
       // document.getElementById("txtPaysModif").value = valeurs[2];
@@ -691,7 +691,7 @@
         //alert("Modif enregistré");
         let code = document.getElementById("txtCodeModif").value;
         let params = Get_zones_modif();
-        let Ajax = new Ajax_Es6(url + "REGION");
+        let Ajax = new Ajax_Es6(url + "VIN");
         Ajax.Cle = code;
         Ajax.put(params, RetourAjax_modif, Erreur_Ajax_modif);
       }, false);
