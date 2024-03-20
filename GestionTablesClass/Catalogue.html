@@ -168,36 +168,69 @@
   </div>
 
 
+
+
   <!--Fenetre modal modif-->
   <div class="modal fade" id="frmModif" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modification</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Modification d'un vin</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="form-floating mt-3 mb-3">
+          <input type="text" class="form-control" id="txtCodeModif" placeholder="Enter code" name="codeAjout" readonly>
+          <label for="pwd">Code</label>
+        </div>
+        <div class="form-floating mt-3 mb-3">
+          <input type="text" class="form-control" id="txtCuveeModif" placeholder="Enter cuvee" name="cuveeAjout">
+          <label for="pwd">Nom de la cuvée</label>
+        </div>
 
-        <div class="form-floating mb-3 mt-3">
-          <input type="text" class="form-control" id="txtCodeModif" placeholder="Enter code" name="codeModif" readonly>
-          <label for="email">Code</label>
+        <div class="form-group form-floating mt-3 mb-3">
+          <input type="text" class="form-control" id="txtAppellationModif" placeholder="Enter appellation"
+            name="appellationAjout">
+          <label for="pays">Appellation</label>
+          <div id="comboAppellationModif"></div>
         </div>
+
+        <div class="form-group form-floating mt-3 mb-3">
+          <input type="text" class="form-control" id="txtRegionModif" placeholder="Enter region" name="regionAjout">
+          <label for="pays">Nom région</label>
+          <div id="comboRegionModif"></div>
+        </div>
+
+        <div class="form-group form-floating mt-3 mb-3">
+          <input type="text" class="form-control" id="txtCouleurModif" placeholder="Enter couleur" name="couleurAjout">
+          <label for="pays">Type de vin</label>
+          <div id="comboCouleurModif"></div>
+        </div>
+
         <div class="form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtRegionModif" placeholder="Enter region" name="regionModif">
-          <label for="pwd">Nom de la région</label>
+          <input type="text" class="form-control" id="txtCultureModif" placeholder="Enter culture" name="cultureAjout">
+          <label for="pwd">Type de culture</label>
         </div>
+
         <div class="form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtPaysModif" placeholder="Enter pays" name="paysModif">
-          <label for="pwd">Pays</label>
-          <div id="comboModif"></div>
+          <input type="text" class="form-control" id="txtCommModif" placeholder="Enter commentaire"
+            name="commentaireAjout">
+          <label for="pwd">Commentaire</label>
         </div>
+
 
         <div class="modal-footer">
-          <button id="btnModifEnreg" type="button" class="btn btn-success" data-bs-dismiss="modal">Enregistrer</button>
+          <button id="btnAjoutEnreg" type="button" class="btn btn-success" data-bs-dismiss="modal">Enregistrer</button>
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
         </div>
       </div>
     </div>
   </div>
+
+
+
+  <!-- FIN -->
+
+
 
 
   <!-- <script src="http://code.jquery.com/jquery.js"></script> -->
@@ -371,7 +404,6 @@
       obj.CODECOULEUR = document.getElementById("idCouleurComboAjout").value;
       obj.TYPE_DE_CULTURE = document.getElementById("txtCultureAjout").value;
       obj.COMMENTAIRES = document.getElementById("txtCommAjout").value;
-      //obj.CODEPAYS = document.getElementById("idPaysComboAjout").value;//ID du COMBO
 
       return JSON.stringify(obj);
     }
@@ -402,7 +434,7 @@
 
     ///////////////////TEST REGION/////////////////////////////////////////////////////////
 
-    //COMBO REGION
+    //COMBO REGION AJOUT
     function RetourGetRegAjax(reponse) {
       let myObj = JSON.parse(reponse);
       let reg = new Combo();
@@ -424,7 +456,7 @@
 
     ///////////////////TEST COULEUR/////////////////////////////////////////////////////////
 
-    //COMBO COULEUR
+    //COMBO COULEUR AJOUT
     function RetourGetCouleurAjax(reponse) {
       let myObj = JSON.parse(reponse);
       let reg = new Combo();
@@ -447,7 +479,7 @@
 
 
     //Combo pour la modal AJOUT
-    //COMBO APPELLATION
+    //COMBO APPELLATION AJOUT
     function RetourGetAppAjax(reponse) {
       let myObj = JSON.parse(reponse);
       let ajout = new Combo();
@@ -458,30 +490,66 @@
 
       ajout.generer();
 
-      //COMBO REGION
-      //let myObjReg = JSON.parse(reponse2);
-      // let reg = new Combo();
-      // reg.id_zone = "comboRegionAjout";
-      // reg.id_select = "idRegionComboAjout";
-      // reg.class_select = "class_Region";
-      // // reg.data = [[1, "g"], [2, "f"]];
-      // reg.data = myObj.REGION.records;
-
-      // reg.generer();
-
 
 
       //////////////////////////////////////////////////////////////////////////////////
       /////////////////////////////////////////
-      //Combo pour la modal MODIF
-      //   let modif = new Combo();
-      //   modif.id_zone = "comboModif";
-      //   modif.id_select = "idPaysComboModif";
-      //   modif.class_select = "class_PaysComboM";
-      //   modif.data = myObj.PAYS.records;
+      //Combo pour la modal MODIF Appellation
+      let appmodif = new Combo();
+      appmodif.id_zone = "comboAppellationModif";
+      appmodif.id_select = "idAppComboModif";
+      appmodif.class_select = "class_APPComboModif";
+      appmodif.data = myObj.APPELLATION.records;
 
-      //   modif.generer();
+      appmodif.generer();
+
+      //Combo pour la modal MODIF Region
+      // let regmodif = new Combo();
+      // regmodif.id_zone = "comboRegionModif";
+      // regmodif.id_select = "idRegComboModif";
+      // regmodif.class_select = "class_RegComboModif";
+      // regmodif.data = myObj.REGION.records;
+
+      // regmodif.generer();
+
     }
+
+
+    //COMBO REGION dans MODIF
+    function RetourGetRegAjax(reponse) {
+      let myObj = JSON.parse(reponse);
+      let regmodif = new Combo();
+      regmodif.id_zone = "comboRegionModif";
+      regmodif.id_select = "idRegComboModif";
+      regmodif.class_select = "class_RegComboModif";
+      regmodif.data = myObj.REGION.records;
+
+      regmodif.generer();
+    }
+
+    function genererComboregmodif() {
+      let Ajax = new Ajax_Es6(url + "REGION?columns=CODEREGION,NOMREGION&order=NOMREGION,asc");
+      Ajax.get(RetourGetRegAjax, ErreurAjax);
+    }
+
+    //COMBO COULEUR dans MODIF
+    function RetourGetCouleurAjax(reponse) {
+      let myObj = JSON.parse(reponse);
+      let colmodif = new Combo();
+      colmodif.id_zone = "comboCouleurModif";
+      colmodif.id_select = "idCouleurComboModif";
+      colmodif.class_select = "class_Couleur";
+      colmodif.data = myObj.COULEUR.records;
+
+      colmodif.generer();
+    }
+
+    function genererComboCouleurModif() {
+      let Ajax = new Ajax_Es6(url + "COULEUR?order=NOMCOULEUR,asc");
+      Ajax.get(RetourGetCouleurAjax, ErreurAjax);
+    }
+
+
 
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -491,11 +559,16 @@
       //alert("Click sur modif region");
       let valeurs = e.target.value.split(",");
       document.getElementById("txtCodeModif").value = valeurs[0];
-      document.getElementById("txtRegionModif").value = valeurs[1];
+      document.getElementById("txtCuveeModif").value = valeurs[1];
+      document.getElementById("txtAppellationModif").value = valeurs[2];
+      document.getElementById("txtRegionModif").value = valeurs[3];
+      document.getElementById("yxyCouleurModif").value = valeurs[4];
+      document.getElementById("txtCultureModif").value = valeurs[5];
+      document.getElementById("txtCommModif").value = valeurs[6];
       // document.getElementById("txtPaysModif").value = valeurs[2];
       //je me positionne dans le combo en recherchant le nom du pays contenu dans valeurs[2]///
       const text = valeurs[2];
-      const select = document.querySelector("#idPaysComboModif");
+      const select = document.querySelector("#idAppComboModif");
       const options = Array.from(select.options);
       const optionToSelect = options.find((item) => item.text === text);
       console.log(optionToSelect);
@@ -520,9 +593,12 @@
     function Get_zones_modif(e) {
       // Au format JSON
       let obj = {};
-      obj.CODEREGION = document.getElementById("txtCodeModif").value;
-      obj.CODEPAYS = document.getElementById("idPaysComboModif").value;
-      obj.NOMREGION = document.getElementById("txtRegionModif").value;
+      obj.NOM_CUVEE = document.getElementById("txtCuveeModif").value;
+      obj.CODEAPPELLATION = document.getElementById("idAppComboModif").value;//ID du COMBO
+      obj.CODEREGION = document.getElementById("idRegComboModif").value;//ID du COMBO     
+      obj.CODECOULEUR = document.getElementById("idCouleurComboModif").value;//ID du COMBO
+      obj.TYPE_DE_CULTURE = document.getElementById("txtCultureModif").value;
+      obj.COMMENTAIRES = document.getElementById("txtCommModif").value;
 
       return JSON.stringify(obj);
     }
