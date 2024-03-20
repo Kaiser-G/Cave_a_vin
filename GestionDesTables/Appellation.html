@@ -20,7 +20,16 @@
 </head>
 <style>
   body {
-    background-color: bisque !important;
+    background-color: black !important;
+    background-image: url(../images/bouteilles.jpg) !important;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+  }
+
+  h1 {
+    color: white !important;
+    margin-top: 5% !important;
   }
 
   #alert {
@@ -40,8 +49,6 @@
 
 <body>
   <header id="idHeader"></header>
-  <br>
-  <br>
   <br>
   <h1 class="text-center">Liste des appellations</h1>
   <br>
@@ -216,7 +223,7 @@
       // // Efface la zone et ajoute la zone de recherche
       document.getElementById("zone").innerHTML = "";
       document.getElementById("zone").innerHTML =
-        "<div class='form-inline'><label for='txtRech'>Recherche &nbsp;&nbsp;</label><input type='text' class='form-control' id='txtRech' name='txtRech' placeholder='saisir le début de votre recherche'>&nbsp;</div><br>";
+        "<div class='form-inline text-light'><label for='txtRech'>Recherche &nbsp;&nbsp;</label><input type='text' class='form-control' id='txtRech' name='txtRech' placeholder='saisir le début de votre recherche'>&nbsp;</div><br>";
 
 
       //création de new class

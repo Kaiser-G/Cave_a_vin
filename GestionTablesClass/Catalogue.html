@@ -27,6 +27,7 @@
 
   h1 {
     color: aliceblue !important;
+    margin-top: 7% !important;
   }
 
   #alert {
@@ -45,9 +46,6 @@
 
 <body>
   <header id="idHeader"></header>
-  <br>
-  <br>
-  <br>
   <img id="contact" src="../images/contact.png" class="rounded float-right" alt="">
   <h1 class="text-center">Catalogue des vins</h1>
   <br>
@@ -590,7 +588,7 @@
 
 
 
-      /////Pour region dans combo modif, on se positionne correctement sur l'appellation de la ligne
+      /////Pour region dans combo modif, on se positionne correctement sur la region de la ligne
       const Nom_REGION = valeurs[3];
       const select2 = document.querySelector("#idRegComboModif");
       const options2 = Array.from(select2.options);
@@ -602,11 +600,10 @@
         alert("Valeur non trouvée");
       }
 
-      /////Pour couleur dans combo modif, on se positionne correctement sur l'appellation de la ligne
+      /////Pour couleur(type de vin) dans combo modif, on se positionne correctement sur le type de vin de la ligne
       const Nom_COULEUR = valeurs[4];
       const select3 = document.querySelector("#idCouleurComboModif");
       const options3 = Array.from(select3.options);
-      alert(options3);
       const optionToSelect3 = options3.find((item) => item.text === Nom_COULEUR);
       console.log(optionToSelect3);
       if (optionToSelect3 != undefined) {
@@ -686,7 +683,7 @@
         message("danger", "Ligne NON supprimée");
 
       }
-      // Liste des régions
+      // Liste des vins
       afficher_Liste();
     }
     function erreur(reponse) {
