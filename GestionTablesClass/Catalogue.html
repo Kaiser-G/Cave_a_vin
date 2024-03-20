@@ -82,21 +82,21 @@
           <label for="pwd">Nom de la cuvée</label>
         </div>
 
-        <div class="form-group form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtAppellationAjout" placeholder="Enter appellation"
-            name="appellationAjout">
+        <div class="form-group mt-3 mb-3">
+          <!-- <input type="text" class="form-control" id="txtAppellationAjout" placeholder="Enter appellation"
+            name="appellationAjout"> -->
           <label for="App">Appellation</label>
           <div id="comboAppellationAjout"></div>
         </div>
 
-        <div class="form-group form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtRegionAjout" placeholder="Enter region" name="regionAjout">
+        <div class="form-group mt-3 mb-3">
+          <!-- <input type="text" class="form-control" id="txtRegionAjout" placeholder="Enter region" name="regionAjout"> -->
           <label for="Region">Nom région</label>
           <div id="comboRegionAjout"></div>
         </div>
 
-        <div class="form-group form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtCouleurAjout" placeholder="Enter couleur" name="couleurAjout">
+        <div class="form-group mt-3 mb-3">
+          <!-- <input type="text" class="form-control" id="txtCouleurAjout" placeholder="Enter couleur" name="couleurAjout"> -->
           <label for="pays">Type de vin</label>
           <div id="comboCouleurAjout"></div>
         </div>
@@ -192,21 +192,21 @@
           <label for="pwd">Nom de la cuvée</label>
         </div>
 
-        <div class="form-group form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtAppellationModif" placeholder="Enter appellation"
-            name="appellationAjout">
+        <div class="form-group mt-3 mb-3">
+          <!-- <input type="text" class="form-control" id="txtAppellationModif" placeholder="Enter appellation"
+            name="appellationAjout"> -->
           <label for="pays">Appellation</label>
           <div id="comboAppellationModif"></div>
         </div>
 
-        <div class="form-group form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtRegionModif" placeholder="Enter region" name="regionAjout">
+        <div class="form-group mt-3 mb-3">
+          <!-- <input type="text" class="form-control" id="txtRegionModif" placeholder="Enter region" name="regionAjout"> -->
           <label for="pays">Nom région</label>
           <div id="comboRegionModif"></div>
         </div>
 
-        <div class="form-group form-floating mt-3 mb-3">
-          <input type="text" class="form-control" id="txtCouleurModif" placeholder="Enter couleur" name="couleurAjout">
+        <div class="form-group mt-3 mb-3">
+          <!-- <input type="text" class="form-control" id="txtCouleurModif" placeholder="Enter couleur" name="couleurAjout"> -->
           <label for="pays">Type de vin</label>
           <div id="comboCouleurModif"></div>
         </div>
@@ -529,7 +529,7 @@
       let regmodif = new Combo();
       regmodif.id_zone = "comboRegionModif";
       regmodif.id_select = "idRegComboModif";
-      regmodif.class_select = "class_RegComboModif";//A modififier avec form-control
+      regmodif.class_select = "form-control";//A modififier avec form-control
       regmodif.data = myObj.REGION.records;
 
       regmodif.generer();
@@ -546,7 +546,7 @@
       let colmodif = new Combo();
       colmodif.id_zone = "comboCouleurModif";
       colmodif.id_select = "idCouleurComboModif";
-      colmodif.class_select = "class_Couleur";
+      colmodif.class_select = "form-control";
       colmodif.data = myObj.COULEUR.records;
 
       colmodif.generer();
@@ -568,13 +568,15 @@
       let valeurs = e.target.value.split(",");
       document.getElementById("txtCodeModif").value = valeurs[0];
       document.getElementById("txtCuveeModif").value = valeurs[1];
-      document.getElementById("txtAppellationModif").value = valeurs[2];
-      document.getElementById("txtRegionModif").value = valeurs[3];
-      document.getElementById("txtCouleurModif").value = valeurs[4];
+      //document.getElementById("txtAppellationModif").value = valeurs[2];
+      //document.getElementById("txtRegionModif").value = valeurs[3];
+      //document.getElementById("txtCouleurModif").value = valeurs[4];
       document.getElementById("txtCultureModif").value = valeurs[5];
       document.getElementById("txtCommModif").value = valeurs[6];
       // document.getElementById("txtPaysModif").value = valeurs[2];
       //je me positionne dans le combo en recherchant le nom du pays contenu dans valeurs[2]///
+
+      /////Pour appellation dans combo modif, on se positionne correctement sur l'appellation de la ligne
       const text = valeurs[2];
       const select = document.querySelector("#idAppComboModif");
       const options = Array.from(select.options);
@@ -582,6 +584,20 @@
       console.log(optionToSelect);
       if (optionToSelect != undefined) {
         select.value = optionToSelect.value;
+      } else {
+        alert("Valeur non trouvée");
+      }
+
+
+
+      /////Pour region dans combo modif, on se positionne correctement sur l'appellation de la ligne
+      const Nom_REGION = valeurs[3];
+      const select2 = document.querySelector("#idRegComboModif");
+      const options2 = Array.from(select2.options);
+      const optionToSelect2 = options2.find((item) => item.text === text2);
+      console.log(optionToSelect2);
+      if (optionToSelect2 != undefined) {
+        select.value = optionToSelect2.value;
       } else {
         alert("Valeur non trouvée");
       }
