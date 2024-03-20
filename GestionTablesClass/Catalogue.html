@@ -554,7 +554,7 @@
         "Êtes-vous certain de vouloir supprimer cette ligne ?"
       );
       if (reponse) {
-        let Ajax = new Ajax_Es6(url + "REGION");
+        let Ajax = new Ajax_Es6(url + "VIN");
         Ajax.Cle = valeurs[0]; // Recupération du code à supprimer
         Ajax.del(retourAjaxSuppr, erreur);
       }
