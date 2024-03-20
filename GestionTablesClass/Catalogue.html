@@ -69,7 +69,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ajouter une nouvelle région</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Ajouter d'un nouveau vin</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="form-floating mt-3 mb-3">
@@ -333,8 +333,7 @@
 
     function afficher_Liste() {
       // Liste des regions__dans Url = "changer en fonction de l'api"
-      Obj_AJAX.Url = url + "VIN?include=APPELLATION,REGION,COULEUR&transform=1"; //?include=APPELLATION&transform=1 columns=CODEREGION,NOMREGION
-      //Obj_AJAX.Url += url + "VIN?include=REGION&transform=1";
+      Obj_AJAX.Url = url + "VIN?include=APPELLATION,REGION,COULEUR&transform=1";
       Obj_AJAX.get(RetourGetAjax, ErreurAjax);
     }
 
@@ -370,6 +369,8 @@
       obj.CODEAPPELLATION = document.getElementById("idAppellationComboAjout").value;//ID du COMBO
       obj.CODEREGION = document.getElementById("idRegionComboAjout").value;//ID du COMBO
       obj.CODECOULEUR = document.getElementById("idCouleurComboAjout").value;
+      obj.TYPE_DE_CULTURE = document.getElementById("txtCultureAjout").value;
+      obj.COMMENTAIRES = document.getElementById("txtCommAjout").value;
       //obj.CODEPAYS = document.getElementById("idPaysComboAjout").value;//ID du COMBO
 
       return JSON.stringify(obj);
@@ -414,7 +415,7 @@
     }
 
     function genererComboReg() {
-      let Ajax = new Ajax_Es6(url + "REGION?order=NOMREGION,asc");
+      let Ajax = new Ajax_Es6(url + "REGION?columns=CODEREGION,NOMREGION&order=NOMREGION,asc");
       Ajax.get(RetourGetRegAjax, ErreurAjax);
     }
 
