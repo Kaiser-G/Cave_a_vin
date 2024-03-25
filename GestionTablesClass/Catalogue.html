@@ -427,18 +427,11 @@
     function genererComboApp() {
       Obj_AJAX.Url = url + "APPELLATION?order=NOMAPPELLATION,asc";
       Obj_AJAX.get(RetourGetAppAjax, ErreurAjax);
-      // let Ajax = new Ajax_Es6(url + "APPELLATION?order=NOMAPPELLATION,asc");
-      // Ajax.get(RetourGetAppAjax, ErreurAjax);
     }
 
-    // function genererComboReg() {
-    //   // Obj_AJAX.Url = url + "REGION?order=NOMREGION,asc";
-    //   // Obj_AJAX.get(RetourGetAppAjax, ErreurAjax);
-    //   let Ajax = new Ajax_Es6(url + "REGION?order=NOMREGION,asc");
-    //   Ajax.get(RetourGetAppAjax, ErreurAjax);
-    // }
 
-    ///////////////////TEST REGION/////////////////////////////////////////////////////////
+
+    /////////////////// REGION/////////////////////////////////////////////////////////
 
     //COMBO REGION AJOUT
     function RetourGetRegAjoutAjax(reponse) {
@@ -460,7 +453,7 @@
 
     /////////////////////////////////////////////////////////////////////////////////////
 
-    ///////////////////TEST COULEUR/////////////////////////////////////////////////////////
+    /////////////////// COULEUR/////////////////////////////////////////////////////////
 
     //COMBO COULEUR AJOUT
     function RetourGetCouleurAjoutAjax(reponse) {
@@ -508,15 +501,6 @@
       appmodif.data = myObj.APPELLATION.records;
 
       appmodif.generer();
-
-      //Combo pour la modal MODIF Region
-      // let regmodif = new Combo();
-      // regmodif.id_zone = "comboRegionModif";
-      // regmodif.id_select = "idRegComboModif";
-      // regmodif.class_select = "class_RegComboModif";
-      // regmodif.data = myObj.REGION.records;
-
-      // regmodif.generer();
 
     }
 
@@ -714,7 +698,7 @@
       let btnajout = document.getElementById("btnAjoutEnreg");
       btnajout.addEventListener("click", () => {
         let params = Get_zones_ajout();
-        alert(params);
+        // alert(params);
         let Ajax = new Ajax_Es6(url + "VIN");
         Ajax.post(params, RetourApp_ajout, Erreur_Ajax_ajout);
       }, false);
