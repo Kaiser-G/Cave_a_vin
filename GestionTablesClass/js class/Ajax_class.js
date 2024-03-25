@@ -5,7 +5,7 @@ class Ajax {
   // Les attributs
   #url = ""; // Contiendra l'URL de l'API
   #cle = ""; // Contiendra l'identifiant (clé unique)
-  // pour les PUT et DEletE
+  // pour les PUT et Delete
 
   // Le constructeur
   constructor(url = "", cle = "") {
