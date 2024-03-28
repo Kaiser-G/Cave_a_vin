@@ -79,38 +79,27 @@
           <input type="text" class="form-control" id="txtCuveeAjout" placeholder="Enter cuvee" name="cuveeAjout">
           <label for="pwd">Nom de la cuvée</label>
         </div>
-
         <div class="form-group mt-3 mb-3">
-          <!-- <input type="text" class="form-control" id="txtAppellationAjout" placeholder="Enter appellation"
-            name="appellationAjout"> -->
           <label for="App">Appellation</label>
           <div id="comboAppellationAjout"></div>
         </div>
-
         <div class="form-group mt-3 mb-3">
-          <!-- <input type="text" class="form-control" id="txtRegionAjout" placeholder="Enter region" name="regionAjout"> -->
           <label for="Region">Nom région</label>
           <div id="comboRegionAjout"></div>
         </div>
-
         <div class="form-group mt-3 mb-3">
-          <!-- <input type="text" class="form-control" id="txtCouleurAjout" placeholder="Enter couleur" name="couleurAjout"> -->
           <label for="pays">Type de vin</label>
           <div id="comboCouleurAjout"></div>
         </div>
-
         <div class="form-floating mt-3 mb-3">
           <input type="text" class="form-control" id="txtCultureAjout" placeholder="Enter culture" name="cultureAjout">
           <label for="pwd">Type de culture</label>
         </div>
-
         <div class="form-floating mt-3 mb-3">
           <input type="text" class="form-control" id="txtCommAjout" placeholder="Enter commentaire"
             name="commentaireAjout">
           <label for="pwd">Commentaire</label>
         </div>
-
-
         <div class="modal-footer">
           <button id="btnAjoutEnreg" type="button" class="btn btn-success" data-bs-dismiss="modal">Enregistrer</button>
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Annuler</button>
@@ -236,7 +225,7 @@
 
 
 
-  <!-- <script src="http://code.jquery.com/jquery.js"></script> -->
+  <!------------- Script ------------------------------>
   <script src="./Js class/ajax_Class_Html.js"></script>
   <script src="./Js class/table_ES6.js"></script>
   <script src="./Js class/Ajax_class.js"></script>
@@ -396,7 +385,7 @@
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //////////////////////////Pour les modal////////////////////
+    //////////////////////////Pour les modales////////////////////
 
     //Function Ajout nouveau vin
 
@@ -423,7 +412,7 @@
     function Erreur_Ajax_ajout(reponse) {
       alert("Erreur Ajax ");
     }
-    //ATTENTION modif a faire : url + "METTRE le nom de l'API visé"
+    //ATTENTION modif a faire : url + "METTRE le nom de l'API visée"
     function genererComboApp() {
       Obj_AJAX.Url = url + "APPELLATION?order=NOMAPPELLATION,asc";
       Obj_AJAX.get(RetourGetAppAjax, ErreurAjax);
@@ -694,7 +683,7 @@
 
       /////////////////////////////////////////////////////////////////////////////////////////
       //ajouter
-      //bouton enregistrer dans la modal nouveau
+      //bouton enregistrer dans la modal ajout du bouton nouveau
       let btnajout = document.getElementById("btnAjoutEnreg");
       btnajout.addEventListener("click", () => {
         let params = Get_zones_ajout();
@@ -715,13 +704,6 @@
         Ajax.Cle = code;
         Ajax.put(params, RetourAjax_modif, Erreur_Ajax_modif);
       }, false);
-      /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
     }, false);
 
   </script>
